@@ -13,7 +13,7 @@ yarn add gatsby-remark-embed-youtube
 ```js
     plugins: [      
       {
-        resolve: `gatsby-transformer-remark`,
+        resolve: "gatsby-transformer-remark",
         options: {
           plugins: [
           {
@@ -26,6 +26,14 @@ yarn add gatsby-remark-embed-youtube
           ]
         }
       },
+```
+
+Note: if you also rely on `gatsby-remark-responsive-iframe`, you have to define the embed-youtube plugin first:
+``` js
+plugins: [
+  "gatsby-remark-embed-youtube",
+  "gatsby-remark-responsive-iframe"
+]
 ```
 
 3. Restart gastby.
