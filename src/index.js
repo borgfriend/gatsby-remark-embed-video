@@ -21,7 +21,8 @@ module.exports = ({ markdownAST }, options = { width: 600, height: 300 }) => {
         <iframe 
           src="${videoUrl}"
           width="${options.width}" 
-          height="${options.height}" 
+          height="${options.height}"
+          style="max-height: ${options.height}"
         />
         `
       }
