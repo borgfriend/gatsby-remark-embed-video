@@ -18,6 +18,9 @@ module.exports = ({ markdownAST }, options = { width: 600, height: 300 }) => {
       if (isUrlValid(videoUrl)) {
         node.type = `html`
         node.value = `
+        <style>.gatsby-resp-iframe-wrapper iframe {max-height: ${
+          options.height
+        } !important}</style>
         <iframe 
           src="${videoUrl}"
           width="${options.width}" 
