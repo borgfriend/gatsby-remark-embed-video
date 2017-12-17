@@ -1,6 +1,6 @@
 {
   "name": "gatsby-remark-embed-youtube",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Embed Youtube Videos in Gatsby via Markdown",
   "main": "index.js",
   "author": "Marvin Mieth <ntwcklng@gmail.com>",
