@@ -17,13 +17,7 @@ module.exports = ({ markdownAST }, options = { width: 600, height: 300 }) => {
 
       if (isUrlValid(videoUrl)) {
         node.type = `html`
-        node.value = `
-        <iframe 
-          src="${videoUrl}"
-          width="${options.width}" 
-          height="${options.height}"
-        />
-        `
+        node.value = `<iframe src="${videoUrl}" width="${options.width}px" height="${options.height}px"/>`
       }
     }
   })
