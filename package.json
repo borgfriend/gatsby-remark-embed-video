@@ -5,9 +5,14 @@
   "main": "index.js",
   "author": "Marvin Mieth <ntwcklng@gmail.com>",
   "license": "MIT",
-  "keywords": ["gatsby", "gatsby-plugin", "remark"],
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "remark"
+  ],
   "dependencies": {
     "babel-runtime": "^6.26.0",
+    "get-video-id": "^2.1.7",
     "unist-util-visit": "^1.1.3"
   },
   "devDependencies": {
