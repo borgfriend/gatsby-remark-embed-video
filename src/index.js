@@ -33,7 +33,7 @@ module.exports = ({ markdownAST }, options = { width: 560, height: 315 }) => {
         output = videoTypes[videoId.service](videoId.id);
       } else {
         let service = processValue[1];
-        if (service === video) {
+        if (service === 'video') {
           output = `<p style="color: red">Error: Video Id could not be read.</p>`
         }
         output = videoTypes[service](videoId);
