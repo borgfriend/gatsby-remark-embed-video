@@ -3,7 +3,8 @@ const visit = require(`unist-util-visit`);
 const getVideoId = require('get-video-id');
 
 module.exports = ({ markdownAST }, options = { width: 560, height: 315 }) => {
-  let createIframe = (url) => {
+
+  const createIframe = (url) => {
     return `<iframe 
               width="${options.width}" 
               height="${options.height}" 
@@ -12,8 +13,8 @@ module.exports = ({ markdownAST }, options = { width: 560, height: 315 }) => {
               allowfullscreen
             ></iframe>`
   };
-  
-  let videoTypes = {
+
+  const videoTypes = {
     'youtube': (id) => createIframe(`https://www.youtube.com/embed/${id}`),
     'vimeo': (id) => createIframe(`https://player.vimeo.com/video/${id}`),
     'videopress': (id) => {
@@ -22,21 +23,25 @@ module.exports = ({ markdownAST }, options = { width: 560, height: 315 }) => {
   }
 
   visit(markdownAST, `inlineCode`, node => {
-    const { value } = node
-
-    if (value.startsWith(`video:`) || value.startsWith(`youtube:`) || value.startsWith(`vimeo:`) || value.startsWith(`videopress:`)) {
-      const processValue = value.match(/([^:])*:(.*)/);
-      const videoId = getVideoId(processValue[2]);
+    const { value } = node;
+    const processValue = value.match(/([^:]*):(.*)/);
+    let type = processValue[1];
+  
+    if (Object.keys(videoTypes).includes(type)) {
+      
+      let videoId = getVideoId(processValue[2]);
 
       let output;
       if (videoId) {
         output = videoTypes[videoId.service](videoId.id);
       } else {
-        let service = processValue[1];
-        if (service === 'video') {
+       
+        if (type === 'video') {
           output = `<p style="color: red">Error: Video Id could not be read.</p>`
+        } else {
+          videoId = processValue[2].trim();
+          output = videoTypes[type](videoId);
         }
-        output = videoTypes[service](videoId);
       }
 
       node.type = `html`
