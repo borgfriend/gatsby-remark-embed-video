@@ -3,8 +3,12 @@
 const visit = require(`unist-util-visit`);
 const getVideoId = require('get-video-id');
 
-module.exports = ({ markdownAST }, options = { width: 560, height: 315 }) => {
+module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7 }) => {
   const createIframe = url => {
+    if (!options.height) {
+      options.height = options.width * options.ratio;
+    }
+
     return `<iframe 
               width="${options.width}" 
               height="${options.height}" 
