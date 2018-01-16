@@ -1,12 +1,16 @@
-# gatsby-remark-embed-youtube
+# gatsby-remark-embed-video
 Embed a Youtube Video in your Markdown
+
+Inspired by [gatsby-remark-embed-youtube]()
 
 
 ## Install 
 1. Install plugin to your site:
 
 ```bash
-yarn add gatsby-remark-embed-youtube
+npm i gatsby-remark-embed-video
+
+yarn add gatsby-remark-embed-video
 ```
 
 2. Add following to your `gatsby-config.js`:
@@ -20,7 +24,8 @@ yarn add gatsby-remark-embed-youtube
             resolve: "gatsby-remark-embed-youtube",
             options: {
               width: 800,
-              height: 400
+              ratio: 1.77 // Optional: Defaults to 16/9 = 1.77
+              height: 400 // Optional: Overrides optional.ratio
             }
           }
           ]
