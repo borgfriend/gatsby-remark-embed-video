@@ -30,7 +30,6 @@ module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7 }) => {
       return createIframe(`https://videopress.com/embed/${id}`) + `<script src="https://videopress.com/videopress-iframe.js"></script>`
     },
     'video': (id) => `<p style="color: red">Error: Video Id could not be read.</p>`
-
   }
 
   visit(markdownAST, `inlineCode`, node => {
