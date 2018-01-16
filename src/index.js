@@ -4,7 +4,15 @@ const getVideoId = require('get-video-id');
 
 module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7 }) => {
   const createIframe = (url) => {
-    let height = Math.round(options.width / options.ratio);
+    if (options.ratio === undefined) {
+      options.ratio = 1.77;
+    }
+
+    let height = options.height;
+
+    if (height === undefined) {
+      Math.round(options.width / options.ratio);
+    }
 
     return `<iframe 
               width="${options.width}" 
