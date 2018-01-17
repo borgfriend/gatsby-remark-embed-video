@@ -12,7 +12,7 @@ module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7 }) => {
     let height = options.height;
 
     if (height === undefined) {
-      Math.round(options.width / options.ratio);
+      height = Math.round(options.width / options.ratio);
     }
 
     return `<iframe 
