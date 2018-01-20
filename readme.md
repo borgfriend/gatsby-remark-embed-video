@@ -21,7 +21,7 @@ yarn add gatsby-remark-embed-video
         options: {
           plugins: [
           {
-            resolve: "gatsby-remark-embed-youtube",
+            resolve: "gatsby-remark-embed-video",
             options: {
               width: 800,
               ratio: 1.77 // Optional: Defaults to 16/9 = 1.77
@@ -36,7 +36,7 @@ yarn add gatsby-remark-embed-video
 Note: if you also rely on `gatsby-remark-responsive-iframe`, you have to define the embed-youtube plugin first:
 ``` js
 plugins: [
-  "gatsby-remark-embed-youtube",
+  "gatsby-remark-embed-video",
   "gatsby-remark-responsive-iframe"
 ]
 ```
@@ -55,8 +55,8 @@ plugins: [
 `vimeo: https://vimeo.com/5299404`
 `vimeo: 5299404`
 
-`videoPress: `https://videopress.com/v/kUJmAcSf`
-`videoPress: `kUJmAcSf`
+`videoPress: https://videopress.com/v/kUJmAcSf`
+`videoPress: kUJmAcSf`
 
 ```
 
