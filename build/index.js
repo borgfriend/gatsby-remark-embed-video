@@ -3,21 +3,30 @@
 const visit = require(`unist-util-visit`);
 const getVideoId = require('get-video-id');
 
-const createIframe = url => {
-  return `<iframe 
+const createIframe = (url, videoPlatform) => {
+  let rel = '';
+  let iframe = '';
+  if (videoPlatform == 'youtube' && !(options.related)) {
+    url += '?rel=0';
+  }
+  iframe+= `<iframe 
             width="${options.width}" 
             height="${options.height}" 
             src="${url}" 
             frameborder="0" 
             allowfullscreen
           ></iframe>`;
+  if (videoPlatform == 'videopress'){
+    iframe+= `<script src="https://videopress.com/videopress-iframe.js"></script>`;
+  }
+  return iframe;
 };
 
 const videoTypes = {
-  'youtube': id => createIframe(`https://www.youtube.com/embed/${id}`),
-  'vimeo': id => createIframe(`https://player.vimeo.com/video/${id}`),
+  'youtube': id => createIframe(`https://www.youtube.com/embed/${id}`, 'youtube'),
+  'vimeo': id => createIframe(`https://player.vimeo.com/video/${id}`, 'vimeo'),
   'videopress': id => {
-    return createIframe(`https://videopress.com/embed/${id}`) + `<script src="https://videopress.com/videopress-iframe.js"></script>`;
+    return createIframe(`https://videopress.com/embed/${id}`, 'videopress');
   },
   'video': id => {
     let videoId = getVideoId(id);
@@ -29,7 +38,7 @@ const videoTypes = {
   }
 };
 
-module.exports = ({ markdownAST }, options = { width: 560, height: 315 }) => {
+module.exports = ({ markdownAST }, options = { width: 560, height: 315, related: true }) => {
 
   visit(markdownAST, `inlineCode`, node => {
     const { value } = node;
