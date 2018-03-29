@@ -2,8 +2,8 @@
 const visit = require(`unist-util-visit`);
 const getVideoId = require('get-video-id');
 
-module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7 }) => {
-  const createIframe = (url) => {
+module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7, related: true }) => {
+  const createIframe = (url, videoPlatform) => {
     if (options.ratio === undefined) {
       options.ratio = 1.77;
     }
@@ -12,6 +12,10 @@ module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7 }) => {
 
     if (height === undefined) {
       height = Math.round(options.width / options.ratio);
+    }
+
+    if (videoPlatform == 'youtube' && !(options.related)) {
+      url += '?rel=0';
     }
 
     return `<iframe 
@@ -24,10 +28,10 @@ module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7 }) => {
   };
 
   const videoTypes = {
-    'youtube': (id) => createIframe(`https://www.youtube.com/embed/${id}`),
-    'vimeo': (id) => createIframe(`https://player.vimeo.com/video/${id}`),
+    'youtube': (id) => createIframe(`https://www.youtube.com/embed/${id}`, 'youtube'),
+    'vimeo': (id) => createIframe(`https://player.vimeo.com/video/${id}`, 'vimeo'),
     'videopress': (id) => {
-      return createIframe(`https://videopress.com/embed/${id}`) + `<script src="https://videopress.com/videopress-iframe.js"></script>`
+      return createIframe(`https://videopress.com/embed/${id}`, 'videopress') + `<script src="https://videopress.com/videopress-iframe.js"></script>`;
     },
     'video': (id) => `<p style="color: red">Error: Video Id could not be read.</p>`
   }
