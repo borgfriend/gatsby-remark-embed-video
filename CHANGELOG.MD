@@ -12,3 +12,7 @@
 ## Features & Bugs
 * Added `related` option to remove related videos from the end of an embedded YouTube video.
 * Fixed some typo in Readme.md
+
+# 1.0.4 (2018-03-29)
+* Added back ratio that was removed by the merge
+* Fixed babel build configuration
