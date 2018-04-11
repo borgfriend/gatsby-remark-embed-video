@@ -2,7 +2,14 @@
 const visit = require(`unist-util-visit`);
 const getVideoId = require('get-video-id');
 
-module.exports = ({ markdownAST }, options = { width: 560, ratio: 1.7, related: false }) => {
+module.exports = ({ markdownAST }, opts) => {
+
+  const options = Object.assign(opts || {}, {
+    width: 560,
+    ratio: 1.77,
+    related: false
+  })
+
   const createIframe = (url, videoPlatform) => {
     if (options.ratio === undefined) {
       options.ratio = 1.77;
