@@ -2,7 +2,7 @@
   "name": "gatsby-remark-embed-video",
   "version": "1.1.1",
   "description": "Embed Videos (Youtube, Vimeo, VideoPress) in Gatsby via Markdown",
-  "main": "build/index.js",
+  "main": "index.js",
   "author": "Neal Bürger <info@nealbuerger.com>",
   "license": "MIT",
   "keywords": [
