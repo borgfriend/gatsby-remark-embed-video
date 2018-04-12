@@ -1,5 +1,11 @@
 # Changelog
 
+# 1.1.1 (2018-04-12)
+* Adjusted default ratio to 1.77
+* Refactored function names
+# 1.1.0 (2018-04-12)
+* Rewrite to typescript
+
 # 1.0.6 (2018-03-30)
 * Set default value of related to false.
 

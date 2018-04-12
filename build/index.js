@@ -15,12 +15,14 @@ var VideoServices = {
     VIDEOPRESS: 'videopress'
 };
 var EmbedVideo = /** @class */ (function () {
-    function EmbedVideo(options) {
+    function EmbedVideo(type, id, options) {
+        this.type = type;
+        this.id = id;
         this.options = options;
         this.knownPlatforms = ['youtube', 'vimeo', 'videopress'];
         var defaultOptions = {
             width: 560,
-            ratio: 1.7,
+            ratio: 1.77,
             related: false
         };
         this.options = __assign({}, defaultOptions, options);
@@ -28,9 +30,9 @@ var EmbedVideo = /** @class */ (function () {
             this.options.height = Math.round(this.options.width / this.options.ratio);
         }
     }
-    EmbedVideo.prototype.process = function (type, id) {
+    EmbedVideo.prototype.getHTML = function () {
         try {
-            var videoId = this.idVideo(type, id);
+            var videoId = this.readVideoId();
             var url = this.createUrl(videoId.service, videoId.id);
             var iframe = this.createIframe(videoId.service, url);
             return iframe;
@@ -39,16 +41,16 @@ var EmbedVideo = /** @class */ (function () {
             return "<p style=\"color: red\">Error: " + e.message + "</p>";
         }
     };
-    EmbedVideo.prototype.idVideo = function (type, id) {
-        var videoId = getVideoId(id);
+    EmbedVideo.prototype.readVideoId = function () {
+        var videoId = getVideoId(this.id);
         if (videoId === undefined) {
-            if (type === 'video') {
+            if (this.type === 'video') {
                 throw new TypeError('Id could not be processed');
             }
             else {
                 return {
-                    id: id,
-                    service: type
+                    id: this.id,
+                    service: this.type
                 };
             }
         }
@@ -82,15 +84,14 @@ var addVideoIframe = function (_a, options) {
     var markdownAST = _a.markdownAST;
     visit(markdownAST, "inlineCode", function (node) {
         var value = node.value;
-        console.log(value);
         var processValue = value.match(/([^:]*):(.*)/);
         if (processValue) {
             var type = processValue[1];
             var id = processValue[2];
             id = id.trim();
-            var embedVideo = new EmbedVideo(options);
+            var embedVideo = new EmbedVideo(type, id, options);
             node.type = "html";
-            node.value = embedVideo.process(type, id);
+            node.value = embedVideo.getHTML();
         }
     });
 };

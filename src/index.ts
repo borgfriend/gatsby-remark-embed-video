@@ -18,11 +18,13 @@ class EmbedVideo {
   knownPlatforms = ['youtube', 'vimeo', 'videopress'];
 
   constructor(
+    private type: string,
+    private id: string,
     private options: EmbedVideoOptions
   ) {
     let defaultOptions = {
       width: 560,
-      ratio: 1.7,
+      ratio: 1.77,
       related: false
     }
     this.options = { ...defaultOptions, ...options };
@@ -30,11 +32,12 @@ class EmbedVideo {
     if (!this.options.height) {
       this.options.height = Math.round(this.options.width / this.options.ratio);
     }
+
   }
 
-  process(type: string, id: string) {
+  getHTML() {
     try {
-      let videoId = this.idVideo(type, id);
+      let videoId = this.readVideoId();
       let url = this.createUrl(videoId.service, videoId.id);
       let iframe = this.createIframe(videoId.service, url);
       return iframe;
@@ -44,15 +47,15 @@ class EmbedVideo {
 
   }
 
-  idVideo(type: string, id: string): { service: string, id: string } {
-    let videoId = getVideoId(id);
+  readVideoId(): { service: string, id: string } {
+    let videoId = getVideoId(this.id);
     if (videoId === undefined) {
-      if (type === 'video') {
+      if (this.type === 'video') {
         throw new TypeError('Id could not be processed');
       } else {
         return {
-          id: id,
-          service: type
+          id: this.id,
+          service: this.type
         }
       }
     }
@@ -99,7 +102,6 @@ class EmbedVideo {
 const addVideoIframe = ({ markdownAST }: any, options: EmbedVideoOptions) => {
   visit(markdownAST, `inlineCode`, (node: { type: string, value: string }) => {
     const { value } = node;
-    console.log(value);
 
     const processValue = value.match(/([^:]*):(.*)/);
     if (processValue) {
@@ -107,10 +109,10 @@ const addVideoIframe = ({ markdownAST }: any, options: EmbedVideoOptions) => {
       let id = processValue[2];
       id = id.trim();
 
-      let embedVideo = new EmbedVideo(options);
+      let embedVideo = new EmbedVideo(type, id, options);
 
       node.type = `html`;
-      node.value = embedVideo.process(type, id);
+      node.value = embedVideo.getHTML();
     }
 
   })
