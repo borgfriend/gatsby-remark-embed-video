@@ -47,7 +47,7 @@ class EmbedVideo {
 
   }
 
-  readVideoId(): { service: string, id: string } {
+  private readVideoId(): { service: string, id: string } {
     let videoId = getVideoId(this.id);
     if (videoId === undefined) {
       if (this.type === 'video') {
@@ -62,7 +62,7 @@ class EmbedVideo {
     return videoId;
   }
 
-  createUrl(service: string, videoId: string): string {
+  private createUrl(service: string, videoId: string): string {
     const urls: { [index: string]: string } = {
       youtube: `https://www.youtube.com/embed/${videoId}`,
       vimeo: `https://player.vimeo.com/video/${videoId}`,
@@ -82,7 +82,7 @@ class EmbedVideo {
     return url;
   }
 
-  createIframe(videoPlatform: string, url: string) {
+  private createIframe(videoPlatform: string, url: string) {
     let iframeNode = `<iframe 
               width="${this.options.width}" 
               height="${this.options.height}" 
