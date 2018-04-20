@@ -1,5 +1,7 @@
 # Changelog
 
+# 1.2.0 (2018-04-20)
+* Made the regex matching expression more exact to avoid alternative matchings
 # 1.1.2 (2018-04-12)
 * Error in package.json
 # 1.1.1 (2018-04-12)
