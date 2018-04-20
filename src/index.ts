@@ -102,8 +102,11 @@ class EmbedVideo {
 const addVideoIframe = ({ markdownAST }: any, options: EmbedVideoOptions) => {
   visit(markdownAST, `inlineCode`, (node: { type: string, value: string }) => {
     const { value } = node;
+    let knownPlatforms = ['youtube', 'vimeo', 'videopress'];
+    let keywords = [...knownPlatforms, 'video'].join('|');
+    let re = new RegExp(`\(${keywords}\):\(\.\*\)`, 'i');
 
-    const processValue = value.match(/([^:]*):(.*)/);
+    const processValue = value.match(re);
     if (processValue) {
       let type = processValue[1];
       let id = processValue[2];
