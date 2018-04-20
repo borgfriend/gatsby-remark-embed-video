@@ -84,7 +84,10 @@ var addVideoIframe = function (_a, options) {
     var markdownAST = _a.markdownAST;
     visit(markdownAST, "inlineCode", function (node) {
         var value = node.value;
-        var processValue = value.match(/([^:]*):(.*)/);
+        var knownPlatforms = ['youtube', 'vimeo', 'videopress'];
+        var keywords = knownPlatforms.concat(['video']).join('|');
+        var re = new RegExp("(" + keywords + "):(.*)", 'i');
+        var processValue = value.match(re);
         if (processValue) {
             var type = processValue[1];
             var id = processValue[2];
