@@ -1,5 +1,13 @@
 # Changelog
 
+# 1.3.0 (2018-06-02)
+* Feature: Youtube Support for additional get parameters + autoconvert parameter "t" to "start" to enable starting the video at a specific starting point.
+* Added CSS-Class for easier styling ".embedVideoIframe"
+* Added Option "customStyle" to disable auto adding of `<style>`-tag to remove border
+* Fix for Issue: "frameborder" attribute obsolute. Remove so we can just use global CSS border:0 on iframe #8
+* Fix for Issue: Second VideoPress Link In README Fails #7 
+* Fix for Issue: Add support for YouTube link with set start time #6
+
 # 1.2.0 (2018-04-20)
 * Made the regex matching expression more exact to avoid alternative matchings
 # 1.1.2 (2018-04-12)

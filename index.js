@@ -7,6 +7,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
+var url_1 = require("url");
 var visit = require("unist-util-visit");
 var getVideoId = require('get-video-id');
 var VideoServices = {
@@ -23,7 +24,8 @@ var EmbedVideo = /** @class */ (function () {
         var defaultOptions = {
             width: 560,
             ratio: 1.77,
-            related: false
+            related: false,
+            noIframeBorder: true
         };
         this.options = __assign({}, defaultOptions, options);
         if (!this.options.height) {
@@ -62,17 +64,43 @@ var EmbedVideo = /** @class */ (function () {
             vimeo: "https://player.vimeo.com/video/" + videoId,
             videopress: "https://videopress.com/embed/" + videoId,
         };
-        var url = urls[service];
+        var url = new url_1.URL(urls[service]);
         if (!url) {
             throw new TypeError('Unknown Video Service');
         }
-        if (service === VideoServices.YOUTUBE && !(this.options.related)) {
-            url += '?rel=0';
+        if (service === VideoServices.YOUTUBE) {
+            if (this.id.startsWith("http")) {
+                var originalParams = new url_1.URL(this.id);
+                originalParams.searchParams.forEach(function (val, index) {
+                    if (index === "v") {
+                        //Skip original video Parameter
+                    }
+                    else {
+                        if (index === "t") {
+                            var times = val.match(/(\d+)/g);
+                            if (times) {
+                                var seconds = times.reverse()
+                                    .reduce(function (total, val, index) { return total + (parseInt(val) * Math.pow(60, index)); }, 0);
+                                url.searchParams.set("start", seconds.toString());
+                            }
+                        }
+                        else {
+                            url.searchParams.set(index, val);
+                        }
+                    }
+                });
+            }
+            if (!this.options.related) {
+                url.searchParams.set("rel", "0");
+            }
         }
-        return url;
+        return url.toString();
     };
     EmbedVideo.prototype.createIframe = function (videoPlatform, url) {
-        var iframeNode = "<iframe \n              width=\"" + this.options.width + "\" \n              height=\"" + this.options.height + "\" \n              src=\"" + url + "\" \n              frameborder=\"0\" \n              allowfullscreen\n            ></iframe>";
+        var iframeNode = "<iframe \n              width=\"" + this.options.width + "\" \n              height=\"" + this.options.height + "\" \n              src=\"" + url + "\"\n              class=\"embedVideoIframe\" \n              allowfullscreen\n            ></iframe>";
+        if (this.options.noIframeBorder) {
+            iframeNode += "\n      <style>\n        .embedVideoIframe {\n          border: 0\n        }\n      </style>";
+        }
         if (videoPlatform === VideoServices.VIDEOPRESS) {
             iframeNode += "<script src=\"https://videopress.com/videopress-iframe.js\"></script>";
         }

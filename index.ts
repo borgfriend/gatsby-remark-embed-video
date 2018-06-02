@@ -1,3 +1,5 @@
+import { URL } from "url";
+
 const visit = require(`unist-util-visit`);
 const getVideoId = require('get-video-id');
 
@@ -6,6 +8,7 @@ interface EmbedVideoOptions {
   ratio: number;
   related: boolean;
   height?: number;
+  noIframeBorder?: boolean;
 }
 
 const VideoServices = {
@@ -25,7 +28,8 @@ class EmbedVideo {
     let defaultOptions = {
       width: 560,
       ratio: 1.77,
-      related: false
+      related: false,
+      noIframeBorder: true
     }
     this.options = { ...defaultOptions, ...options };
 
@@ -69,27 +73,62 @@ class EmbedVideo {
       videopress: `https://videopress.com/embed/${videoId}`,
     };
 
-    let url: string = urls[service];
+    const url = new URL(urls[service]);
 
     if (!url) {
       throw new TypeError('Unknown Video Service');
     }
 
-    if (service === VideoServices.YOUTUBE && !(this.options.related)) {
-      url += '?rel=0';
+    if (service === VideoServices.YOUTUBE) {
+      if (this.id.startsWith("http")) {
+        const originalParams = new URL(this.id);
+        originalParams.searchParams.forEach(
+          (val, index) => {
+            if (index === "v") {
+              //Skip original video Parameter
+            } else {
+              if (index === "t") {
+                let times = val.match(/(\d+)/g);
+                if (times) {
+                  let seconds = times.reverse()
+                    .reduce(
+                      (total, val, index) => total + (parseInt(val) * Math.pow(60, index)
+                      ), 0
+                    )
+                  url.searchParams.set("start", seconds.toString());
+                }
+
+              } else {
+                url.searchParams.set(index, val);
+              }
+            }
+          })
+      }
+
+      if (!this.options.related) {
+        url.searchParams.set("rel", "0");
+      }
     }
 
-    return url;
+    return url.toString();
   }
 
   private createIframe(videoPlatform: string, url: string) {
     let iframeNode = `<iframe 
               width="${this.options.width}" 
               height="${this.options.height}" 
-              src="${url}" 
-              frameborder="0" 
+              src="${url}"
+              class="embedVideoIframe" 
               allowfullscreen
             ></iframe>`
+    if (this.options.noIframeBorder) {
+      iframeNode += `
+      <style>
+        .embedVideoIframe {
+          border: 0
+        }
+      </style>`
+    }
 
     if (videoPlatform === VideoServices.VIDEOPRESS) {
       iframeNode += `<script src="https://videopress.com/videopress-iframe.js"></script>`
