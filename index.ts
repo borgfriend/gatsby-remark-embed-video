@@ -55,7 +55,7 @@ class EmbedVideo {
       } else {
         return {
           id: this.id,
-          service: this.type
+          service: this.type.toLowerCase()
         }
       }
     }

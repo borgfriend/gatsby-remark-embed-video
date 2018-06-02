@@ -50,7 +50,7 @@ var EmbedVideo = /** @class */ (function () {
             else {
                 return {
                     id: this.id,
-                    service: this.type
+                    service: this.type.toLowerCase()
                 };
             }
         }
