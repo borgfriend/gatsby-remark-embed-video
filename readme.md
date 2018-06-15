@@ -45,7 +45,7 @@ plugins: [
 
 Note: you can style the videoIframe using `.embedVideoIframe`
 
-3. Restart gastby.
+1. Restart gatsby.
 
 ## Usage
 
@@ -61,6 +61,11 @@ Note: you can style the videoIframe using `.embedVideoIframe`
 
 `videoPress: https://videopress.com/v/kUJmAcSf`
 `videoPress: kUJmAcSf`
+
+`twitch: https://player.twitch.tv/?channel=dakotaz`
+`twitch: https://player.twitch.tv/?autoplay=false&video=v273436948`
+`twitch: 273436948`
+`twitchLive: dakotaz`
 
 ```
 

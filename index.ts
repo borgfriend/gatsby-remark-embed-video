@@ -11,14 +11,21 @@ interface EmbedVideoOptions {
   noIframeBorder?: boolean;
 }
 
+interface VideoId {
+  id: string,
+  service: string
+}
+
 const VideoServices = {
   YOUTUBE: 'youtube',
   VIMEO: 'vimeo',
-  VIDEOPRESS: 'videopress'
+  VIDEOPRESS: 'videopress',
+  TWITCH: 'twitch',
+  TWITCHLIVE: 'twitchLive'
 }
 
 class EmbedVideo {
-  knownPlatforms = ['youtube', 'vimeo', 'videopress'];
+  knownPlatforms = ['youtube', 'vimeo', 'videopress', 'twitch', 'twitchLive'];
 
   constructor(
     private type: string,
@@ -48,12 +55,57 @@ class EmbedVideo {
     } catch (e) {
       return `<p style="color: red">Error: ${e.message}</p>`;
     }
-
   }
 
-  private readVideoId(): { service: string, id: string } {
+  private getTwitchId(input: string): VideoId | {} {
+    let url = new URL(input);
+    if (url.origin == 'https://player.twitch.tv'){
+      let videoParam = url.searchParams.get('video');
+      if (videoParam){
+        return {
+          id: videoParam,
+          service: VideoServices.TWITCH
+        }
+      }
+      let channelParam = url.searchParams.get('channel');
+      if (channelParam){
+        return {
+          id: channelParam,
+          service: VideoServices.TWITCHLIVE
+        }
+      }
+    }
+
+    if (url.origin == 'https://www.twitch.tv'){
+      let pathSplit = url.pathname.split('/');
+      if (pathSplit.length >= 2){
+        if (pathSplit[1] === 'videos'){
+          if (pathSplit.length > 2) {
+            return {
+              id: `v${pathSplit[2]}`,
+              service: VideoServices.TWITCH
+            }
+          }
+        } else {
+          return {
+            id: pathSplit[1],
+            service: VideoServices.TWITCHLIVE
+          }
+        }
+      }
+    }
+    
+    return { };
+  }
+
+  private readVideoId(): VideoId {
     let videoId = getVideoId(this.id);
-    if (videoId === undefined) {
+
+    if (videoId === {}){
+      videoId = this.getTwitchId(this.id);
+    }
+
+    if (videoId === {}) {
       if (this.type === 'video') {
         throw new TypeError('Id could not be processed');
       } else {
@@ -67,10 +119,16 @@ class EmbedVideo {
   }
 
   private createUrl(service: string, videoId: string): string {
+    if (service === VideoServices.TWITCH && !videoId.startsWith('v')) {
+      videoId = `v${videoId}`;
+    }
+    
     const urls: { [index: string]: string } = {
       youtube: `https://www.youtube.com/embed/${videoId}`,
       vimeo: `https://player.vimeo.com/video/${videoId}`,
       videopress: `https://videopress.com/embed/${videoId}`,
+      twitch: `https://player.twitch.tv/?autoplay=false&video=${videoId}`,
+      twitchLive: `https://player.twitch.tv/?channel=${videoId}`
     };
 
     const url = new URL(urls[service]);
@@ -161,4 +219,3 @@ const addVideoIframe = ({ markdownAST }: any, options: EmbedVideoOptions) => {
 }
 
 export = addVideoIframe;
-

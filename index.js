@@ -13,14 +13,16 @@ var getVideoId = require('get-video-id');
 var VideoServices = {
     YOUTUBE: 'youtube',
     VIMEO: 'vimeo',
-    VIDEOPRESS: 'videopress'
+    VIDEOPRESS: 'videopress',
+    TWITCH: 'twitch',
+    TWITCHLIVE: 'twitchLive'
 };
 var EmbedVideo = /** @class */ (function () {
     function EmbedVideo(type, id, options) {
         this.type = type;
         this.id = id;
         this.options = options;
-        this.knownPlatforms = ['youtube', 'vimeo', 'videopress'];
+        this.knownPlatforms = ['youtube', 'vimeo', 'videopress', 'twitch', 'twitchLive'];
         var defaultOptions = {
             width: 560,
             ratio: 1.77,
@@ -43,9 +45,51 @@ var EmbedVideo = /** @class */ (function () {
             return "<p style=\"color: red\">Error: " + e.message + "</p>";
         }
     };
+    EmbedVideo.prototype.getTwitchId = function (input) {
+        var url = new url_1.URL(input);
+        if (url.origin == 'https://player.twitch.tv') {
+            var videoParam = url.searchParams.get('video');
+            if (videoParam) {
+                return {
+                    id: videoParam,
+                    service: VideoServices.TWITCH
+                };
+            }
+            var channelParam = url.searchParams.get('channel');
+            if (channelParam) {
+                return {
+                    id: channelParam,
+                    service: VideoServices.TWITCHLIVE
+                };
+            }
+        }
+        if (url.origin == 'https://www.twitch.tv') {
+            var pathSplit = url.pathname.split('/');
+            if (pathSplit.length >= 2) {
+                if (pathSplit[1] === 'videos') {
+                    if (pathSplit.length > 2) {
+                        return {
+                            id: "v" + pathSplit[2],
+                            service: VideoServices.TWITCH
+                        };
+                    }
+                }
+                else {
+                    return {
+                        id: pathSplit[1],
+                        service: VideoServices.TWITCHLIVE
+                    };
+                }
+            }
+        }
+        return {};
+    };
     EmbedVideo.prototype.readVideoId = function () {
         var videoId = getVideoId(this.id);
-        if (videoId === undefined) {
+        if (videoId === {}) {
+            videoId = this.getTwitchId(this.id);
+        }
+        if (videoId === {}) {
             if (this.type === 'video') {
                 throw new TypeError('Id could not be processed');
             }
@@ -59,10 +103,15 @@ var EmbedVideo = /** @class */ (function () {
         return videoId;
     };
     EmbedVideo.prototype.createUrl = function (service, videoId) {
+        if (service === VideoServices.TWITCH && !videoId.startsWith('v')) {
+            videoId = "v" + videoId;
+        }
         var urls = {
             youtube: "https://www.youtube.com/embed/" + videoId,
             vimeo: "https://player.vimeo.com/video/" + videoId,
             videopress: "https://videopress.com/embed/" + videoId,
+            twitch: "https://player.twitch.tv/?autoplay=false&video=" + videoId,
+            twitchLive: "https://player.twitch.tv/?channel=" + videoId
         };
         var url = new url_1.URL(urls[service]);
         if (!url) {
