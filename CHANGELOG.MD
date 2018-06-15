@@ -1,7 +1,11 @@
 # Changelog
+# 1.4.0 (2018-06-15)
+* Feature: Twitch Support
+* Upgraded Dependencies
+* Refactored Package for adding tests
 
 # 1.3.0 (2018-06-02)
-* Feature: Youtube Support for additional get parameters + autoconvert parameter "t" to "start" to enable starting the video at a specific starting point.
+* Feature: YouTube Support for additional get parameters + autoconvert parameter "t" to "start" to enable starting the video at a specific starting point.
 * Added CSS-Class for easier styling ".embedVideoIframe"
 * Added Option "customStyle" to disable auto adding of `<style>`-tag to remove border
 * Fix for Issue: "frameborder" attribute obsolute. Remove so we can just use global CSS border:0 on iframe #8
