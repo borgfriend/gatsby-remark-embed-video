@@ -11,12 +11,14 @@ const VideoServices: {
   VIDEOPRESS: string;
   TWITCH: string;
   TWITCHLIVE: string;
+  NICONICO: string;
 } = {
     YOUTUBE: 'youtube',
     VIMEO: 'vimeo',
     VIDEOPRESS: 'videopress',
     TWITCH: 'twitch',
-    TWITCHLIVE: 'twitchlive'
+    TWITCHLIVE: 'twitchlive',
+    NICONICO: 'niconico'
   }
 
 export const getKnownPlatforms = () => {
@@ -134,7 +136,8 @@ export class EmbedVideo {
       vimeo: `https://player.vimeo.com/video/${videoId}`,
       videopress: `https://videopress.com/embed/${videoId}`,
       twitch: `https://player.twitch.tv/?autoplay=false&video=${videoId}`,
-      twitchlive: `https://player.twitch.tv/?channel=${videoId}`
+      twitchlive: `https://player.twitch.tv/?channel=${videoId}`,
+      niconico: `https://embed.nicovideo.jp/watch/${videoId}`
     };
 
     const url = new URL(urls[service]);
