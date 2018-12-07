@@ -16,7 +16,8 @@ var VideoServices = {
     VIMEO: 'vimeo',
     VIDEOPRESS: 'videopress',
     TWITCH: 'twitch',
-    TWITCHLIVE: 'twitchlive'
+    TWITCHLIVE: 'twitchlive',
+    NICONICO: 'niconico'
 };
 exports.getKnownPlatforms = function () {
     return Object.keys(VideoServices).map(function (val) { return VideoServices[val]; });
@@ -120,7 +121,8 @@ var EmbedVideo = /** @class */ (function () {
             vimeo: "https://player.vimeo.com/video/" + videoId,
             videopress: "https://videopress.com/embed/" + videoId,
             twitch: "https://player.twitch.tv/?autoplay=false&video=" + videoId,
-            twitchlive: "https://player.twitch.tv/?channel=" + videoId
+            twitchlive: "https://player.twitch.tv/?channel=" + videoId,
+            niconico: "https://embed.nicovideo.jp/watch/" + videoId
         };
         var url = new url_1.URL(urls[service]);
         if (!url) {
