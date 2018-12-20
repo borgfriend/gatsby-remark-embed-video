@@ -1,3 +1,12 @@
+<a name="1.6.0"></a>
+## 1.6.0 (2018-12-20)
+
+
+#### Features
+
+* **Generated HTML:** Add Helper Wrapper for responsive Styling ([da0d2c0a](git+https://github.com/borgfriend/gatsby-remark-embed-video.git/commit/da0d2c0a))
+
+
 <a name="1.5.0"></a>
 ## 1.5.0 (2018-12-20)
 
