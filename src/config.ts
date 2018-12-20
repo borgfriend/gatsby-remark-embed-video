@@ -2,6 +2,7 @@ import { youtubeUrl } from "./videoHelpers/youtube";
 import getVideoId from 'get-video-id';
 import { twitchIdProcessor } from "./videoHelpers/twitch";
 import { IVideoService, IVideoId } from "./interfaces";
+import { nicoVideoProcessor } from "./videoHelpers/nicovideo";
 
 export const defaultOptions = {
     width: 560,
@@ -32,6 +33,10 @@ export const videoServicesConfig: IVideoService[] = [
     {
         id: 'twitchlive',
         embedUrl: (videoId: string) => `https://player.twitch.tv/?channel=${videoId}`
+    },
+    {
+        id: 'niconico',
+        embedUrl: (videoId:string) => `https://embed.nicovideo.jp/watch/${videoId}`
     }
 ];
 
@@ -39,7 +44,8 @@ export const videoServicesConfig: IVideoService[] = [
 
 export const videoIdProcessors: ((id: string) => IVideoId | {})[] = [
     getVideoId,
-    twitchIdProcessor
+    twitchIdProcessor,
+    nicoVideoProcessor
 ];
 
 export const knownPlatforms = () => {
