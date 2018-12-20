@@ -58,13 +58,16 @@ function createUrl(videoId: string, videoService:IVideoService, options: IEmbedV
 }
 
 function createIframe(url: string, videoService:IVideoService, options: IEmbedVideoOptions) {
-  let iframeNode = `<iframe 
+  let iframeNode = `
+        <div class="embedVideo-container">
+            <iframe 
               width="${options.width}" 
               height="${options.height}" 
               src="${url}"
               class="embedVideoIframe" 
               allowfullscreen
-            ></iframe>`
+            ></iframe>
+        </div>`
   if (options.noIframeBorder) {
     iframeNode += `
       <style>
