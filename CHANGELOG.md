@@ -1,3 +1,12 @@
+<a name="1.7.0"></a>
+## 1.7.0 (2018-12-20)
+
+
+#### Features
+
+* **VideoProcessor:** Add Support for NicoNico Video ([b3074b08](git+https://github.com/borgfriend/gatsby-remark-embed-video.git/commit/b3074b08))
+
+
 <a name="1.6.0"></a>
 ## 1.6.0 (2018-12-20)
 
