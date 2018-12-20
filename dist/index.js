@@ -1,20 +1,26 @@
 "use strict";
-var EmbedVideo_1 = require("./EmbedVideo");
-var config_1 = require("./config");
-var visit = require("unist-util-visit");
-var addVideoIframe = function (_a, options) {
-    var markdownAST = _a.markdownAST;
-    visit(markdownAST, "inlineCode", function (node) {
-        var value = node.value;
-        var keywords = config_1.knownPlatforms().concat(['video']).join('|');
-        var re = new RegExp("(" + keywords + "):(.*)", 'i');
-        var processValue = value.match(re);
+const EmbedVideo_1 = require("./EmbedVideo");
+const config_1 = require("./config");
+const visit = require(`unist-util-visit`);
+const overrideDefaultOptions = (options) => {
+    const videoOptions = Object.assign({}, config_1.defaultOptions, options);
+    if (!videoOptions.height) {
+        videoOptions.height = Math.round(videoOptions.width / videoOptions.ratio);
+    }
+    return videoOptions;
+};
+const addVideoIframe = ({ markdownAST }, options) => {
+    options = overrideDefaultOptions(options);
+    visit(markdownAST, `inlineCode`, (node) => {
+        const { value } = node;
+        const keywords = [...config_1.knownPlatforms(), 'video'].join('|');
+        const re = new RegExp(`\(${keywords}\):\(\.\*\)`, 'i');
+        const processValue = value.match(re);
         if (processValue) {
-            var type = processValue[1];
-            var id = processValue[2].trim();
-            var embedVideo = new EmbedVideo_1.EmbedVideo(type, id, options);
-            node.type = "html";
-            node.value = embedVideo.getHTML();
+            const type = processValue[1];
+            const id = processValue[2].trim();
+            node.type = `html`;
+            node.value = EmbedVideo_1.embedVideoHTML(type, id, options);
         }
     });
 };
