@@ -1,6 +1,6 @@
 "use strict";
-const EmbedVideo_1 = require("./EmbedVideo");
-const config_1 = require("./config");
+const config_1 = require("./src/config");
+const EmbedVideo_1 = require("./src/EmbedVideo");
 const visit = require(`unist-util-visit`);
 const overrideDefaultOptions = (options) => {
     const videoOptions = Object.assign({}, config_1.defaultOptions, options);

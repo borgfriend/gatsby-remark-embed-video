@@ -1,6 +1,7 @@
-import { embedVideoHTML } from "./EmbedVideo";
-import { knownPlatforms, defaultOptions } from "./config";
-import { IEmbedVideoOptions } from "./interfaces";
+import { IEmbedVideoOptions } from "./src/interfaces";
+import { defaultOptions, knownPlatforms } from "./src/config";
+import { embedVideoHTML } from "./src/EmbedVideo";
+
 
 const visit = require(`unist-util-visit`);
 
