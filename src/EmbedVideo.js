@@ -18,7 +18,12 @@ exports.embedVideoHTML = embedVideoHTML;
 function readVideoId(type, id) {
     let videoId;
     for (let processor of config_1.videoIdProcessors) {
-        videoId = processor(id);
+        try {
+            videoId = processor(id);
+        }
+        catch (e) {
+            videoId = {};
+        }
         if (Object.keys(videoId).length !== 0) {
             return videoId;
         }
@@ -40,17 +45,20 @@ function createUrl(videoId, videoService, options) {
     return url.toString();
 }
 function createIframe(url, videoService, options) {
-    let iframeNode = `<iframe 
+    let iframeNode = `
+        <div class="embedVideo-container">
+            <iframe 
               width="${options.width}" 
               height="${options.height}" 
               src="${url}"
-              class="embedVideoIframe" 
+              class="embedVideo-iframe" 
               allowfullscreen
-            ></iframe>`;
+            ></iframe>
+        </div>`;
     if (options.noIframeBorder) {
         iframeNode += `
       <style>
-        .embedVideoIframe {
+        .embedVideo-iframe {
           border: 0
         }
       </style>`;
