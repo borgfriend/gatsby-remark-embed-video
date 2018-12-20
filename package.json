@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepublish": "cross-env NODE_ENV=production npm run build",
+    "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "tsc -w",
     "commit": "npx git-cz"
   },
