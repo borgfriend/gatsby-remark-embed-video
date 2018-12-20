@@ -24,7 +24,12 @@ function readVideoId(type: string, id: string): IVideoId {
 
   let videoId;
   for (let processor of videoIdProcessors) {
-    videoId = processor(id);
+    try{
+      videoId = processor(id);
+    } catch (e){
+      videoId = {};
+    }
+    
     if (Object.keys(videoId).length !== 0) {
       return videoId as IVideoId;
     }
