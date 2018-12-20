@@ -1,3 +1,17 @@
+<a name="1.5.0"></a>
+## 1.5.0 (2018-12-20)
+
+
+#### Bug Fixes
+
+* **readVideoId:** Add Error handling for processor failure ([65af7170](git+https://github.com/borgfriend/gatsby-remark-embed-video.git/commit/65af7170))
+
+
+#### Features
+
+* **Generated HTML:** Support for Responsive iFrame styling ([d9dc7a20](git+https://github.com/borgfriend/gatsby-remark-embed-video.git/commit/d9dc7a20))
+
+
 <a name="1.5.0-2"></a>
 ### 1.5.0-2 (2018-12-20)
 
