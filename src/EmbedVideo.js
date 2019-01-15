@@ -47,22 +47,15 @@ function createUrl(videoId, videoService, options) {
 function createIframe(url, videoService, options) {
     let iframeNode = `
         <div class="embedVideo-container">
-            <iframe 
-              width="${options.width}" 
-              height="${options.height}" 
+            <iframe
+              width="${options.width}"
+              height="${options.height}"
               src="${url}"
-              class="embedVideo-iframe" 
+              class="embedVideo-iframe"
+              frameborder="${options.noIframeBorder ? "0" : "1"}"
               allowfullscreen
             ></iframe>
         </div>`;
-    if (options.noIframeBorder) {
-        iframeNode += `
-      <style>
-        .embedVideo-iframe {
-          border: 0
-        }
-      </style>`;
-    }
     if (videoService.additionalHTML) {
         iframeNode += videoService.additionalHTML;
     }
