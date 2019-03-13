@@ -64,18 +64,11 @@ function createIframe(url: string, videoService:IVideoService, options: IEmbedVi
               width="${options.width}" 
               height="${options.height}" 
               src="${url}"
-              class="embedVideo-iframe" 
+              class="embedVideo-iframe"
+              ${options.noIframeBorder ? 'style="border:0"' : ''}
               allowfullscreen
             ></iframe>
         </div>`
-  if (options.noIframeBorder) {
-    iframeNode += `
-      <style>
-        .embedVideo-iframe {
-          border: 0
-        }
-      </style>`
-  }
 
   if (videoService.additionalHTML) {
     iframeNode += videoService.additionalHTML;
