@@ -47,9 +47,9 @@ function createUrl(videoId, videoService, options) {
 function createIframe(url, videoService, options) {
     let iframeNode = `
         <div class="embedVideo-container">
-            <iframe 
-              width="${options.width}" 
-              height="${options.height}" 
+            <iframe
+              width="${options.width}"
+              height="${options.height}"
               src="${url}"
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ''}
