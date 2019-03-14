@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const youtube_1 = require("./videoHelpers/youtube");
 const get_video_id_1 = __importDefault(require("get-video-id"));
 const twitch_1 = require("./videoHelpers/twitch");
+const nicovideo_1 = require("./videoHelpers/nicovideo");
 exports.defaultOptions = {
     width: 560,
     ratio: 1.77,
@@ -34,11 +35,16 @@ exports.videoServicesConfig = [
     {
         id: 'twitchlive',
         embedUrl: (videoId) => `https://player.twitch.tv/?channel=${videoId}`
+    },
+    {
+        id: 'niconico',
+        embedUrl: (videoId) => `https://embed.nicovideo.jp/watch/${videoId}`
     }
 ];
 exports.videoIdProcessors = [
     get_video_id_1.default,
-    twitch_1.twitchIdProcessor
+    twitch_1.twitchIdProcessor,
+    nicovideo_1.nicoVideoProcessor
 ];
 exports.knownPlatforms = () => {
     return exports.videoServicesConfig.map(val => val.id);
