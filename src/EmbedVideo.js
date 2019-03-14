@@ -52,7 +52,7 @@ function createIframe(url, videoService, options) {
               height="${options.height}"
               src="${url}"
               class="embedVideo-iframe"
-              frameborder="${options.noIframeBorder ? "0" : "1"}"
+              ${options.noIframeBorder ? 'style="border:0"' : ''}
               allowfullscreen
             ></iframe>
         </div>`;
