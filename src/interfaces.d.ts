@@ -1,6 +1,13 @@
 import { URL } from "url";
+import { RemarkBurgerOptions } from "remark-burger";
 
-interface IEmbedVideoOptions {
+interface Node {
+  type: string;
+  value: string;
+  data: { content: string };
+}
+
+interface IEmbedVideoOptions extends RemarkBurgerOptions {
   width: number;
   ratio: number;
   related?: boolean;
@@ -19,4 +26,3 @@ interface IVideoService {
   urlProcessing?: (id: string, url: URL, options: IEmbedVideoOptions) => URL;
   additionalHTML?: string;
 }
-

@@ -1,7 +1,7 @@
-import { IEmbedVideoOptions } from "./src/interfaces";
+import { IEmbedVideoOptions, Node } from "./src/interfaces";
 import { defaultOptions, knownPlatforms } from "./src/config";
 import { embedVideoHTML } from "./src/EmbedVideo";
-
+import plugin from "remark-burger";
 
 const visit = require(`unist-util-visit`);
 
@@ -18,12 +18,11 @@ const overrideDefaultOptions = (options: IEmbedVideoOptions): IEmbedVideoOptions
 const addVideoIframe = ({ markdownAST }: any, options: IEmbedVideoOptions) => {
   options = overrideDefaultOptions(options);
 
-  visit(markdownAST, `inlineCode`, (node: { type: string, value: string }) => {
-    const { value } = node;
+  const match = (node: Node, v: string): void => {
     const keywords = [...knownPlatforms(), 'video'].join('|');
     const re = new RegExp(`\(${keywords}\):\(\.\*\)`, 'i');
 
-    const processValue = value.match(re);
+    const processValue = v.match(re);
     if (processValue) {
       const type = processValue[1];
       const id = processValue[2].trim();
@@ -31,8 +30,24 @@ const addVideoIframe = ({ markdownAST }: any, options: IEmbedVideoOptions) => {
       node.type = `html`;
       node.value = embedVideoHTML(type, id, options);
     }
+  }
 
-  })
+  const { beginMarker, endMarker } = options;
+  if (beginMarker || endMarker) {
+    visit(markdownAST, `embedVideo`, (node: Node) => {
+      const { data } = node;
+      match(node, data.content);
+    })
+  } else {
+    visit(markdownAST, `inlineCode`, (node: Node) => {
+      const { value } = node;
+      match(node, value);
+    })
+  }
 }
 
+const setParserPlugins = ({ beginMarker, endMarker }: IEmbedVideoOptions) => 
+  [[ plugin, { beginMarker, endMarker, onlyRunWithMarker: true, pattyName: 'embedVideo' } ]]
+
+addVideoIframe.setParserPlugins = setParserPlugins;
 export = addVideoIframe;
