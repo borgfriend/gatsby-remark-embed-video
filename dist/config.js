@@ -11,7 +11,8 @@ exports.defaultOptions = {
     width: 560,
     ratio: 1.77,
     related: false,
-    noIframeBorder: true
+    noIframeBorder: true,
+    urlOverrides: []
 };
 exports.videoServicesConfig = [
     {
