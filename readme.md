@@ -4,7 +4,7 @@ Embed a Youtube Video in your Markdown
 Inspired by [gatsby-remark-embed-youtube](https://github.com/ntwcklng/gatsby-remark-embed-youtube)
 
 
-## Install 
+## Install
 1. Install plugin to your site:
 
 ```bash
@@ -15,7 +15,7 @@ yarn add gatsby-remark-embed-video
 
 2. Add following to your `gatsby-config.js`:
 ```js
-    plugins: [      
+    plugins: [
       {
         resolve: "gatsby-transformer-remark",
         options: {
@@ -27,7 +27,13 @@ yarn add gatsby-remark-embed-video
               ratio: 1.77, // Optional: Defaults to 16/9 = 1.77
               height: 400, // Optional: Overrides optional.ratio
               related: false, //Optional: Will remove related videos from the end of an embedded YouTube video.
-              noIframeBorder: true //Optional: Disable insertion of <style> border: 0
+              noIframeBorder: true //Optional: Disable insertion of <style> border: 0,
+              urlOverrides: [
+                {
+                  id: 'youtube',
+                  embedURL: (videoId) => `https://www.youtube-nocookie.com/embed/${videoId}`,
+                }
+              ] //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
             }
           }
           ]
@@ -53,7 +59,7 @@ Note: you can style the videoIframe using `.embedVideoIframe`
 # Look at this Video:
 
 `video: https://www.youtube.com/embed/2Xc9gXyf2G4`
-`youtube: https://www.youtube.com/watch?v=2Xc9gXyf2G4` 
+`youtube: https://www.youtube.com/watch?v=2Xc9gXyf2G4`
 `youtube: 2Xc9gXyf2G4`
 
 `vimeo: https://vimeo.com/5299404`

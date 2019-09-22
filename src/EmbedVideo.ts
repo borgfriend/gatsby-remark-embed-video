@@ -10,7 +10,7 @@ export function embedVideoHTML(type: string, id: string, options: IEmbedVideoOpt
   try {
     const videoId: IVideoId = readVideoId(type, id);
 
-    const videoService = getVideoService(videoId.service);
+    const videoService = getVideoService(videoId.service, options);
     const url = createUrl(videoId.id, videoService, options);
     let iframe = createIframe(url, videoService, options);
     return iframe;
@@ -29,7 +29,7 @@ function readVideoId(type: string, id: string): IVideoId {
     } catch (e){
       videoId = {};
     }
-    
+
     if (Object.keys(videoId).length !== 0) {
       return videoId as IVideoId;
     }
@@ -60,9 +60,9 @@ function createUrl(videoId: string, videoService:IVideoService, options: IEmbedV
 function createIframe(url: string, videoService:IVideoService, options: IEmbedVideoOptions) {
   let iframeNode = `
         <div class="embedVideo-container">
-            <iframe 
-              width="${options.width}" 
-              height="${options.height}" 
+            <iframe
+              width="${options.width}"
+              height="${options.height}"
               src="${url}"
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ''}

@@ -5,7 +5,7 @@ const config_1 = require("./config");
 function embedVideoHTML(type, id, options) {
     try {
         const videoId = readVideoId(type, id);
-        const videoService = config_1.getVideoService(videoId.service);
+        const videoService = config_1.getVideoService(videoId.service, options);
         const url = createUrl(videoId.id, videoService, options);
         let iframe = createIframe(url, videoService, options);
         return iframe;
@@ -47,9 +47,9 @@ function createUrl(videoId, videoService, options) {
 function createIframe(url, videoService, options) {
     let iframeNode = `
         <div class="embedVideo-container">
-            <iframe 
-              width="${options.width}" 
-              height="${options.height}" 
+            <iframe
+              width="${options.width}"
+              height="${options.height}"
               src="${url}"
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ''}

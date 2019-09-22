@@ -1,6 +1,6 @@
-import { IEmbedVideoOptions, Node } from "./src/interfaces";
-import { defaultOptions, knownPlatforms } from "./src/config";
-import { embedVideoHTML } from "./src/EmbedVideo";
+import { IEmbedVideoOptions, Node } from "./interfaces";
+import { defaultOptions, knownPlatforms } from "./config";
+import { embedVideoHTML } from "./EmbedVideo";
 import plugin from "remark-burger";
 
 const visit = require(`unist-util-visit`);
@@ -46,7 +46,7 @@ const addVideoIframe = ({ markdownAST }: any, options: IEmbedVideoOptions) => {
   }
 }
 
-const setParserPlugins = ({ beginMarker, endMarker }: IEmbedVideoOptions) => 
+const setParserPlugins = ({ beginMarker, endMarker }: IEmbedVideoOptions) =>
   [[ plugin, { beginMarker, endMarker, onlyRunWithMarker: true, pattyName: 'embedVideo' } ]]
 
 addVideoIframe.setParserPlugins = setParserPlugins;

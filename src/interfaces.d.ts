@@ -13,6 +13,10 @@ interface IEmbedVideoOptions extends RemarkBurgerOptions {
   related?: boolean;
   height?: number;
   noIframeBorder?: boolean;
+  urlOverrides?: {
+    id: string,
+    embedURL: (videoId: string) => string
+  }[];
 }
 
 interface IVideoId {
@@ -22,7 +26,7 @@ interface IVideoId {
 
 interface IVideoService {
   id: string;
-  embedUrl: (val:string) => string;
+  embedUrl: (val: string) => string;
   urlProcessing?: (id: string, url: URL, options: IEmbedVideoOptions) => URL;
   additionalHTML?: string;
 }

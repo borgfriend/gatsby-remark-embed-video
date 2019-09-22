@@ -2,7 +2,7 @@
   "name": "gatsby-remark-embed-video",
   "version": "1.7.1",
   "description": "Embed Videos (Youtube, Vimeo, VideoPress) in Gatsby via Markdown",
-  "main": "dist/index.js",
+  "main": "index.js",
   "types": "dist/index.d.ts",
   "author": "Neal Bürger <info@nealbuerger.com>",
   "license": "MIT",
@@ -12,21 +12,23 @@
     "remark"
   ],
   "dependencies": {
-    "@types/node": "^11.11.3",
-    "get-video-id": "^3.1.0",
+    "get-video-id": "^3.1.4",
     "remark-burger": "^1.0.0",
-    "unist-util-visit": "^1.4.0"
+    "unist-util-visit": "^2.0.0"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "cz-conventional-changelog": "^2.1.0",
-    "typescript": "^3.3.3333"
+    "@types/node": "^12.7.5",
+    "cross-env": "^6.0.0",
+    "cz-conventional-changelog": "^3.0.2",
+    "standard-version": "^7.0.0",
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "build": "tsc",
     "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "tsc -w",
-    "commit": "npx git-cz"
+    "commit": "npx git-cz",
+    "release": "standard-version"
   },
   "homepage": "https://github.com/borgfriend/gatsby-remark-embed-video#readme",
   "repository": {

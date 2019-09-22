@@ -15,29 +15,29 @@ exports.defaultOptions = {
 };
 exports.videoServicesConfig = [
     {
-        id: 'youtube',
+        id: "youtube",
         embedUrl: (videoId) => `https://www.youtube.com/embed/${videoId}`,
         urlProcessing: youtube_1.youtubeUrl
     },
     {
-        id: 'vimeo',
+        id: "vimeo",
         embedUrl: (videoId) => `https://player.vimeo.com/video/${videoId}`
     },
     {
-        id: 'videopress',
+        id: "videopress",
         embedUrl: (videoId) => `https://videopress.com/embed/${videoId}`,
         additionalHTML: '<script src="https://videopress.com/videopress-iframe.js"></script>'
     },
     {
-        id: 'twitch',
+        id: "twitch",
         embedUrl: (videoId) => `https://player.twitch.tv/?autoplay=false&video=${videoId}`
     },
     {
-        id: 'twitchlive',
+        id: "twitchlive",
         embedUrl: (videoId) => `https://player.twitch.tv/?channel=${videoId}`
     },
     {
-        id: 'niconico',
+        id: "niconico",
         embedUrl: (videoId) => `https://embed.nicovideo.jp/watch/${videoId}`
     }
 ];
@@ -49,9 +49,15 @@ exports.videoIdProcessors = [
 exports.knownPlatforms = () => {
     return exports.videoServicesConfig.map(val => val.id);
 };
-exports.getVideoService = (service) => {
+exports.getVideoService = (service, options) => {
     const foundService = exports.videoServicesConfig.find(val => val.id === service);
     if (foundService) {
+        if (options.urlOverrides) {
+            const serviceOverride = options.urlOverrides.find(val => val.id === service);
+            if (serviceOverride) {
+                foundService.embedUrl = serviceOverride.embedURL;
+            }
+        }
         return foundService;
     }
     else {
