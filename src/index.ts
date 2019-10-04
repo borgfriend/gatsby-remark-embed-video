@@ -46,8 +46,11 @@ const addVideoIframe = ({ markdownAST }: any, options: IEmbedVideoOptions) => {
   }
 }
 
-const setParserPlugins = ({ beginMarker, endMarker }: IEmbedVideoOptions) =>
-  [[ plugin, { beginMarker, endMarker, onlyRunWithMarker: true, pattyName: 'embedVideo' } ]]
+const setParserPlugins = (options: IEmbedVideoOptions) => {
+  options = overrideDefaultOptions(options)
+  const { beginMarker, endMarker } = options;
+  return [[ plugin, { beginMarker, endMarker, onlyRunWithMarker: true, pattyName: 'embedVideo' } ]];
+}
 
 addVideoIframe.setParserPlugins = setParserPlugins;
 export = addVideoIframe;

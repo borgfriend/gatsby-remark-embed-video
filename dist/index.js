@@ -7,7 +7,7 @@ const EmbedVideo_1 = require("./EmbedVideo");
 const remark_burger_1 = __importDefault(require("remark-burger"));
 const visit = require(`unist-util-visit`);
 const overrideDefaultOptions = (options) => {
-    const videoOptions = Object.assign(Object.assign({}, config_1.defaultOptions), options);
+    const videoOptions = Object.assign({}, config_1.defaultOptions, options);
     if (!videoOptions.height) {
         videoOptions.height = Math.round(videoOptions.width / videoOptions.ratio);
     }
@@ -40,6 +40,10 @@ const addVideoIframe = ({ markdownAST }, options) => {
         });
     }
 };
-const setParserPlugins = ({ beginMarker, endMarker }) => [[remark_burger_1.default, { beginMarker, endMarker, onlyRunWithMarker: true, pattyName: 'embedVideo' }]];
+const setParserPlugins = (options) => {
+    options = overrideDefaultOptions(options);
+    const { beginMarker, endMarker } = options;
+    return [[remark_burger_1.default, { beginMarker, endMarker, onlyRunWithMarker: true, pattyName: 'embedVideo' }]];
+};
 addVideoIframe.setParserPlugins = setParserPlugins;
 module.exports = addVideoIframe;
