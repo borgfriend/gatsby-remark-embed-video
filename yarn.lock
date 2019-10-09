@@ -1966,9 +1966,9 @@ regex-not@^1.0.0, regex-not@^1.0.2:
     safe-regex "^1.1.0"
 
 remark-burger@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/remark-burger/-/remark-burger-1.0.0.tgz#6cddfe0cecea5c9a96ba2a2edc52f4e9e93daa61"
-  integrity sha512-5kmsrdSwajpC92puE52TWdQub1m3K/Phuwp0oyLieMDabbUUqM+/1TaukHx0KrOUwjSRYCvCeaW3ROCoX+xhmw==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/remark-burger/-/remark-burger-1.0.1.tgz#cda57d4bc1e952ae86b2407fbcf36492ab352106"
+  integrity sha512-F91SyEzat4hBkWsWElHIvMcCQuWoSeZXTuR4DmLvhUIjYkzzVLaX6GRxhkiDrZb/9asvTrYzwEr9HvxN1tqs9Q==
 
 repeat-element@^1.1.2:
   version "1.1.3"
