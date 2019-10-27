@@ -17,11 +17,11 @@
     "unist-util-visit": "^2.0.0"
   },
   "devDependencies": {
-    "@types/node": "^12.7.5",
-    "cross-env": "^6.0.0",
+    "@types/node": "^12.11.7",
+    "cross-env": "^6.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "standard-version": "^7.0.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "build": "tsc",

@@ -7,7 +7,7 @@ const EmbedVideo_1 = require("./EmbedVideo");
 const remark_burger_1 = __importDefault(require("remark-burger"));
 const visit = require(`unist-util-visit`);
 const overrideDefaultOptions = (options) => {
-    const videoOptions = Object.assign({}, config_1.defaultOptions, options);
+    const videoOptions = Object.assign(Object.assign({}, config_1.defaultOptions), options);
     if (!videoOptions.height) {
         videoOptions.height = Math.round(videoOptions.width / videoOptions.ratio);
     }
