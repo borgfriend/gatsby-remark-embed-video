@@ -1,11 +1,12 @@
 # gatsby-remark-embed-video
+
 Embed a Youtube Video in your Markdown
 
 Inspired by [gatsby-remark-embed-youtube](https://github.com/ntwcklng/gatsby-remark-embed-youtube)
 
-
 ## Install
-1. Install plugin to your site:
+
+1.  Install plugin to your site:
 
 ```bash
 npm i gatsby-remark-embed-video
@@ -13,7 +14,8 @@ npm i gatsby-remark-embed-video
 yarn add gatsby-remark-embed-video
 ```
 
-2. Add following to your `gatsby-config.js`:
+2.  Add following to your `gatsby-config.js`:
+
 ```js
     plugins: [
       {
@@ -41,17 +43,19 @@ yarn add gatsby-remark-embed-video
       },
 ```
 
-Note: if you also rely on `gatsby-remark-responsive-iframe`, you have to define the embed-youtube plugin first:
-``` js
+Note: if you also rely on `gatsby-remark-responsive-iframe` or `gatsby-remark-images`, you have to define the embed-youtube plugin first:
+
+```js
 plugins: [
   "gatsby-remark-embed-video",
-  "gatsby-remark-responsive-iframe"
+  "gatsby-remark-responsive-iframe",
+  "gatsby-remark-images"
 ]
 ```
 
 Note: you can style the videoIframe using `.embedVideoIframe`
 
-1. Restart gatsby.
+1.  Restart gatsby.
 
 ## Usage
 
@@ -72,9 +76,7 @@ Note: you can style the videoIframe using `.embedVideoIframe`
 `twitch: https://player.twitch.tv/?autoplay=false&video=v273436948`
 `twitch: 273436948`
 `twitchLive: dakotaz`
-
 ```
-
 
 ## License
 
