@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@types/node": "^13.1.8",
-    "cross-env": "^6.0.3",
+    "cross-env": "^7.0.0",
     "cz-conventional-changelog": "^3.0.2",
     "standard-version": "^7.1.0",
     "typescript": "^3.7.5"
