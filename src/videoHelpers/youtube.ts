@@ -1,34 +1,46 @@
 import { URL } from "url";
 import { IEmbedVideoOptions } from "../interfaces";
 
+const convertTimeParameter = (time: string): string => {
+  let times = time.match(/(\d+)/g);
+  let result = "0"
+  try {
+    if (times) {
+      let seconds = times
+        .reverse()
+        .reduce(
+          (total, val, index) => total + parseInt(val,10) * Math.pow(60, index),
+          0
+        );
+      result = seconds.toString();
+    }
+  } finally {
+    return result;
+  }
+};
+
 export function youtubeUrl(id: string, url: URL, options: IEmbedVideoOptions) {
+  let newParameters: string[][] = [];
   if (id.startsWith("http")) {
     const originalParams = new URL(id);
-    originalParams.searchParams.forEach((val, index) => {
-      if (index === "v") {
-        //Skip original video Parameter
-      } else {
+    newParameters = [...originalParams.searchParams.entries()]
+      //Skip original video Parameter
+      .filter(([key, value]) => key !== "v")
+      .map(([index, val]) => {
         if (index === "t") {
-          let times = val.match(/(\d+)/g);
-          if (times) {
-            let seconds = times
-              .reverse()
-              .reduce(
-                (total, val, index) =>
-                  total + parseInt(val) * Math.pow(60, index),
-                0
-              );
-            url.searchParams.set("start", seconds.toString());
-          }
-        } else {
-          url.searchParams.set(index, val);
+          const time = convertTimeParameter(val);
+          return ["start", time];
         }
-      }
-    });
+        return [index, val];
+      });
   }
 
   if (!options.related) {
-    url.searchParams.set("rel", "0");
+    newParameters.push(["rel", "0"]);
   }
+
+  newParameters.forEach((val) => {
+    url.searchParams.set(val[0], val[1]);
+  });
   return url;
 }
