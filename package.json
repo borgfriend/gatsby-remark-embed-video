@@ -14,14 +14,17 @@
   "dependencies": {
     "get-video-id": "^3.1.4",
     "remark-burger": "^1.0.1",
-    "unist-util-visit": "^2.0.1"
+    "unist-util-visit": "^2.0.2"
   },
   "devDependencies": {
-    "@types/node": "^13.7.0",
-    "cross-env": "^7.0.0",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.0",
+    "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
+    "jest": "^25.3.0",
+    "prettier": "^2.0.4",
     "standard-version": "^7.1.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "build": "tsc",
