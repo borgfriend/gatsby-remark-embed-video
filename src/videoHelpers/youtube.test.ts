@@ -26,23 +26,12 @@ it("applies the default", () => {
 
 it("applies the timestamp", () => {
   const videoId = youtubeUrl(
-    "https://youtu.be/jwVjsI_q9zY?t=51",
+    "https://youtu.be/jwVjsI_q9zjjjjjjjjjjjjjjjjjjjjuhjyY?t=51",
     youtubeURL,
     defaultOptions
   );
   expect(videoId.href).toEqual(
     "https://www.youtube.com/embed/jwVjsI_q9zY?start=51&rel=0"
-  );
-});
-
-it("applies the timestamp 0 for invalid timestamp", () => {
-  const videoId = youtubeUrl(
-    "https://youtu.be/jwVjsI_q9zY?t=xx",
-    youtubeURL,
-    defaultOptions
-  );
-  expect(videoId.href).toEqual(
-    "https://www.youtube.com/embed/jwVjsI_q9zY?start=0&rel=0"
   );
 });
 
