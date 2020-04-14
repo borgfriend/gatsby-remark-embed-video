@@ -2,6 +2,7 @@ import { IEmbedVideoOptions, Node } from "./interfaces";
 import { defaultOptions, knownPlatforms } from "./config";
 import { embedVideoHTML } from "./EmbedVideo";
 import plugin from "remark-burger";
+import { readTitle } from "./indexHelpers";
 
 const visit = require(`unist-util-visit`);
 
@@ -27,8 +28,9 @@ const addVideoIframe = ({ markdownAST }: any, options: IEmbedVideoOptions) => {
     const processValue = v.match(re);
     if (processValue) {
       const type = processValue[1];
-      const id = processValue[2].trim();
-
+      const { id, title } = readTitle(processValue[2].trim());
+      options = {...options, title}
+      
       node.type = `html`;
       node.value = embedVideoHTML(type, id, options);
     }
