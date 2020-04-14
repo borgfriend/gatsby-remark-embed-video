@@ -32,7 +32,8 @@
     "prepare": "cross-env NODE_ENV=production npm run build",
     "watch": "tsc -w",
     "commit": "npx git-cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "jest --watch"
   },
   "homepage": "https://github.com/borgfriend/gatsby-remark-embed-video#readme",
   "repository": {

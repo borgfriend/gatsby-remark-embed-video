@@ -1,53 +1,51 @@
 import { URL } from "url";
 import { IVideoId } from "../interfaces";
 
-function analyseTwitch(url: URL) {
-  let id = url.searchParams.get("video");
-  if (id === null) {
-    const pathSplit = url.pathname.split("/");
-    if (pathSplit.length > 2 && pathSplit[1] === "videos") {
-      id = pathSplit[2];
+const readTwitchURL = (url: URL) : IVideoId | {} => {
+  const pathSplit = url.pathname.split("/");
+  if (pathSplit[1] === "videos"){
+    const id = `v${pathSplit[2]}`
+    return {
+      id,
+      service: "twitch"
+    }
+  }
+  if(pathSplit[1]){
+    return {
+      id: pathSplit[1],
+      service: "twitchLive"
     }
   }
 
-  if (id) {
-    if (!id.startsWith("v")) {
-      id = `v${id}`;
-    }
+  return {};
+}
+
+const readTwitchEmbedURL = (url: URL): IVideoId | {} => {
+  const videoId = url.searchParams.get("video");
+  const channelId = url.searchParams.get("channel");
+  if (videoId) {
     return {
-      id,
+      id: videoId,
       service: "twitch",
     };
-  } else {
-    return undefined;
-  }
-}
-
-function analyseTwitchLive(url: URL) {
-  let id = url.searchParams.get("channel");
-  if (id === null) {
-    const pathSplit = url.pathname.split("/");
-    if (pathSplit.length >= 2) {
-      id = pathSplit[1];
-    }
   }
 
-  if (id) {
+  if (channelId) {
     return {
-      id,
+      id: channelId,
       service: "twitchLive",
     };
-  } else {
-    return undefined;
   }
-}
+  return {};
+};
 
 export function twitchIdProcessor(input: string): IVideoId | {} {
   const url = new URL(input);
-  const twitchUrls = ["https://player.twitch.tv", "https://www.twitch.tv"];
-  if (twitchUrls.includes(url.origin)) {
-    return analyseTwitch(url) || analyseTwitchLive(url) || {};
-  } else {
-    return {};
+  if (url.origin === "https://www.twitch.tv"){
+    return readTwitchURL(url);
   }
+  if (url.origin === "https://player.twitch.tv") {
+    return readTwitchEmbedURL(url);
+  }
+  return {};
 }
