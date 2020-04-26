@@ -30,6 +30,7 @@ yarn add gatsby-remark-embed-video
               height: 400, // Optional: Overrides optional.ratio
               related: false, //Optional: Will remove related videos from the end of an embedded YouTube video.
               noIframeBorder: true, //Optional: Disable insertion of <style> border: 0
+              containerClass: 'embedVideoIframe', //Optional: Custom CSS class for iframe container
               urlOverrides: [
                 {
                   id: 'youtube',
@@ -53,7 +54,7 @@ plugins: [
 ]
 ```
 
-Note: you can style the videoIframe using `.embedVideoIframe`
+Note: you can style the videoIframe using `.embedVideoIframe` or by specifying a custom class
 
 1.  Restart gatsby.
 
