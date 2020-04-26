@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const config_1 = require("./config");
 const EmbedVideo_1 = require("./EmbedVideo");
 const remark_burger_1 = __importDefault(require("remark-burger"));
+const indexHelpers_1 = require("./indexHelpers");
 const visit = require(`unist-util-visit`);
 const overrideDefaultOptions = (options) => {
     const videoOptions = Object.assign(Object.assign({}, config_1.defaultOptions), options);
@@ -16,12 +17,13 @@ const overrideDefaultOptions = (options) => {
 const addVideoIframe = ({ markdownAST }, options) => {
     options = overrideDefaultOptions(options);
     const match = (node, v) => {
-        const keywords = [...config_1.knownPlatforms(), 'video'].join('|');
-        const re = new RegExp(`\(${keywords}\):\(\.\*\)`, 'i');
+        const keywords = [...config_1.knownPlatforms(), "video"].join("|");
+        const re = new RegExp(`\(${keywords}\):\(\.\*\)`, "i");
         const processValue = v.match(re);
         if (processValue) {
             const type = processValue[1];
-            const id = processValue[2].trim();
+            const { id, title } = indexHelpers_1.readTitle(processValue[2].trim());
+            options = Object.assign(Object.assign({}, options), { title });
             node.type = `html`;
             node.value = EmbedVideo_1.embedVideoHTML(type, id, options);
         }
@@ -43,7 +45,17 @@ const addVideoIframe = ({ markdownAST }, options) => {
 const setParserPlugins = (options) => {
     options = overrideDefaultOptions(options);
     const { beginMarker, endMarker } = options;
-    return [[remark_burger_1.default, { beginMarker, endMarker, onlyRunWithMarker: true, pattyName: 'embedVideo' }]];
+    return [
+        [
+            remark_burger_1.default,
+            {
+                beginMarker,
+                endMarker,
+                onlyRunWithMarker: true,
+                pattyName: "embedVideo",
+            },
+        ],
+    ];
 };
 addVideoIframe.setParserPlugins = setParserPlugins;
 module.exports = addVideoIframe;

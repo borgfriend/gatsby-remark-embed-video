@@ -4,18 +4,17 @@ const url_1 = require("url");
 function nicoVideoProcessor(input) {
     try {
         const url = new url_1.URL(input);
-        if (url.hostname.includes('nicovideo')) {
-            const pathSplit = url.pathname.split('/');
+        if (url.hostname.includes("nicovideo")) {
+            const pathSplit = url.pathname.split("/");
             if (pathSplit.length >= 3) {
                 return {
                     id: pathSplit[2],
-                    service: "niconico"
+                    service: "niconico",
                 };
             }
         }
     }
-    catch (e) {
-    }
+    catch (e) { }
     return {};
 }
 exports.nicoVideoProcessor = nicoVideoProcessor;

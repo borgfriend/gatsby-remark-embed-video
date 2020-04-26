@@ -2,30 +2,28 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const url_1 = require("url");
 function youtubeUrl(id, url, options) {
+    let newParameters = [];
     if (id.startsWith("http")) {
         const originalParams = new url_1.URL(id);
-        originalParams.searchParams.forEach((val, index) => {
-            if (index === "v") {
-                //Skip original video Parameter
+        newParameters = [...originalParams.searchParams.entries()]
+            //Skip original video Parameter
+            .filter(([key, value]) => key !== "v")
+            .map(([index, val]) => {
+            if (index === "t") {
+                // embed urls use the start keyword instead of 't' 
+                // More in
+                // https://developers.google.com/youtube/player_parameters
+                return ["start", val];
             }
-            else {
-                if (index === "t") {
-                    let times = val.match(/(\d+)/g);
-                    if (times) {
-                        let seconds = times.reverse()
-                            .reduce((total, val, index) => total + (parseInt(val) * Math.pow(60, index)), 0);
-                        url.searchParams.set("start", seconds.toString());
-                    }
-                }
-                else {
-                    url.searchParams.set(index, val);
-                }
-            }
+            return [index, val];
         });
     }
     if (!options.related) {
-        url.searchParams.set("rel", "0");
+        newParameters.push(["rel", "0"]);
     }
+    newParameters.forEach((val) => {
+        url.searchParams.set(val[0], val[1]);
+    });
     return url;
 }
 exports.youtubeUrl = youtubeUrl;

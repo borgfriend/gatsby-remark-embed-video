@@ -1,53 +1,48 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const url_1 = require("url");
-function analyseTwitch(url) {
-    let id = url.searchParams.get('video');
-    if (id === null) {
-        const pathSplit = url.pathname.split('/');
-        if (pathSplit.length > 2 && pathSplit[1] === 'videos') {
-            id = pathSplit[2];
-        }
-    }
-    if (id) {
-        if (!id.startsWith('v')) {
-            id = `v${id}`;
-        }
+const readTwitchURL = (url) => {
+    const pathSplit = url.pathname.split("/");
+    if (pathSplit[1] === "videos") {
+        const id = `v${pathSplit[2]}`;
         return {
             id,
             service: "twitch"
         };
     }
-    else {
-        return undefined;
-    }
-}
-function analyseTwitchLive(url) {
-    let id = url.searchParams.get('channel');
-    if (id === null) {
-        const pathSplit = url.pathname.split('/');
-        if (pathSplit.length >= 2) {
-            id = pathSplit[1];
-        }
-    }
-    if (id) {
+    if (pathSplit[1]) {
         return {
-            id,
+            id: pathSplit[1],
             service: "twitchLive"
         };
     }
-    else {
-        return undefined;
+    return {};
+};
+const readTwitchEmbedURL = (url) => {
+    const videoId = url.searchParams.get("video");
+    const channelId = url.searchParams.get("channel");
+    if (videoId) {
+        return {
+            id: videoId,
+            service: "twitch",
+        };
     }
-}
+    if (channelId) {
+        return {
+            id: channelId,
+            service: "twitchLive",
+        };
+    }
+    return {};
+};
 function twitchIdProcessor(input) {
     const url = new url_1.URL(input);
-    const twitchUrls = ['https://player.twitch.tv', 'https://www.twitch.tv'];
-    if (twitchUrls.includes(url.origin)) {
-        return analyseTwitch(url) || analyseTwitchLive(url) || {};
+    if (url.origin === "https://www.twitch.tv") {
+        return readTwitchURL(url);
     }
-    else {
-        return {};
+    if (url.origin === "https://player.twitch.tv") {
+        return readTwitchEmbedURL(url);
     }
+    return {};
 }
 exports.twitchIdProcessor = twitchIdProcessor;

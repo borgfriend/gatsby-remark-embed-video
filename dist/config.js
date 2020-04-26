@@ -12,49 +12,50 @@ exports.defaultOptions = {
     ratio: 1.77,
     related: false,
     noIframeBorder: true,
-    urlOverrides: []
+    urlOverrides: [],
+    containerClass: "embedVideoIframe",
 };
 exports.videoServicesConfig = [
     {
         id: "youtube",
         embedUrl: (videoId) => `https://www.youtube.com/embed/${videoId}`,
-        urlProcessing: youtube_1.youtubeUrl
+        urlProcessing: youtube_1.youtubeUrl,
     },
     {
         id: "vimeo",
-        embedUrl: (videoId) => `https://player.vimeo.com/video/${videoId}`
+        embedUrl: (videoId) => `https://player.vimeo.com/video/${videoId}`,
     },
     {
         id: "videopress",
         embedUrl: (videoId) => `https://videopress.com/embed/${videoId}`,
-        additionalHTML: '<script src="https://videopress.com/videopress-iframe.js"></script>'
+        additionalHTML: '<script src="https://videopress.com/videopress-iframe.js"></script>',
     },
     {
         id: "twitch",
-        embedUrl: (videoId) => `https://player.twitch.tv/?autoplay=false&video=${videoId}`
+        embedUrl: (videoId) => `https://player.twitch.tv/?autoplay=false&video=${videoId}`,
     },
     {
         id: "twitchlive",
-        embedUrl: (videoId) => `https://player.twitch.tv/?channel=${videoId}`
+        embedUrl: (videoId) => `https://player.twitch.tv/?channel=${videoId}`,
     },
     {
         id: "niconico",
-        embedUrl: (videoId) => `https://embed.nicovideo.jp/watch/${videoId}`
-    }
+        embedUrl: (videoId) => `https://embed.nicovideo.jp/watch/${videoId}`,
+    },
 ];
 exports.videoIdProcessors = [
     get_video_id_1.default,
     twitch_1.twitchIdProcessor,
-    nicovideo_1.nicoVideoProcessor
+    nicovideo_1.nicoVideoProcessor,
 ];
 exports.knownPlatforms = () => {
-    return exports.videoServicesConfig.map(val => val.id);
+    return exports.videoServicesConfig.map((val) => val.id);
 };
 exports.getVideoService = (service, options) => {
-    const foundService = exports.videoServicesConfig.find(val => val.id === service);
+    const foundService = exports.videoServicesConfig.find((val) => val.id === service);
     if (foundService) {
         if (options.urlOverrides) {
-            const serviceOverride = options.urlOverrides.find(val => val.id === service);
+            const serviceOverride = options.urlOverrides.find((val) => val.id === service);
             if (serviceOverride) {
                 foundService.embedUrl = serviceOverride.embedURL;
             }
