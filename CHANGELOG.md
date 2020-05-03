@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v1.7.0...v3.0.0) (2020-05-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* 🧨 none
+
+### Features
+
+* **customcss:** expose css class to be custom configurable ([4c7d7da](https://github.com/borgfriend/gatsby-remark-embed-video/commit/4c7d7da7c5d3a232aed95f68402183306a47e582))
+* **title for iframe:** add the new a11y syntax ([a6ec283](https://github.com/borgfriend/gatsby-remark-embed-video/commit/a6ec2839afd6100efe01c334edb8a47a511d09fe))
+* **youtube-nocookie:** add url override support ([02ecc2f](https://github.com/borgfriend/gatsby-remark-embed-video/commit/02ecc2f537cc72a7803a240599ee73e2fec56aa9))
+* 🎸 support custom markers other than using backtick ([81e2299](https://github.com/borgfriend/gatsby-remark-embed-video/commit/81e229992d046cf1f73d3e6a28c6abba701724d4))
+
 ### [2.0.1](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v2.0.0...v2.0.1) (2019-10-27)
 
 ## [2.0.0](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v1.7.0...v2.0.0) (2019-09-22)

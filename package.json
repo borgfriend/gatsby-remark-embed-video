@@ -1,6 +1,6 @@
 {
   "name": "gatsby-remark-embed-video",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Embed Videos (Youtube, Vimeo, VideoPress) in Gatsby via Markdown",
   "main": "index.js",
   "types": "dist/index.d.ts",
@@ -18,13 +18,13 @@
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
-    "@types/node": "^13.11.0",
+    "@types/node": "^13.13.4",
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
-    "jest": "^25.3.0",
-    "prettier": "^2.0.4",
+    "jest": "^25.5.4",
+    "prettier": "^2.0.5",
     "standard-version": "^7.1.0",
-    "ts-jest": "^25.3.1",
+    "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
   },
   "scripts": {
