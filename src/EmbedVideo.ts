@@ -67,7 +67,7 @@ function createIframe(
   const {title="", width, height, containerClass} = options;
 
   let iframeNode = `
-        <div class=${containerClass}>
+        <div class="${containerClass}">
             <iframe
               title="${title}"
               width="${width}"
