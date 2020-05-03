@@ -28,12 +28,12 @@ function readVideoId(type, id) {
             return videoId;
         }
     }
-    if (type === 'video') {
-        throw new TypeError('Id could not be processed');
+    if (type === "video") {
+        throw new TypeError("Id could not be processed");
     }
     return {
         id: id,
-        service: type.toLowerCase()
+        service: type.toLowerCase(),
     };
 }
 function createUrl(videoId, videoService, options) {
@@ -45,14 +45,16 @@ function createUrl(videoId, videoService, options) {
     return url.toString();
 }
 function createIframe(url, videoService, options) {
+    const { title = "", width, height, containerClass } = options;
     let iframeNode = `
-        <div class="embedVideo-container">
+        <div class=${containerClass}>
             <iframe
-              width="${options.width}"
-              height="${options.height}"
+              title="${title}"
+              width="${width}"
+              height="${height}"
               src="${url}"
               class="embedVideo-iframe"
-              ${options.noIframeBorder ? 'style="border:0"' : ''}
+              ${options.noIframeBorder ? 'style="border:0"' : ""}
               allowfullscreen
             ></iframe>
         </div>`;
