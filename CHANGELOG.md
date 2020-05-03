@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.0.0...v3.0.1) (2020-05-03)
+
+
+### Bug Fixes
+
+* **css:** fix default css variable, used by gatsby-starter-hello-friend ([dfcd495](https://github.com/borgfriend/gatsby-remark-embed-video/commit/dfcd4953d78c038cc88b96222953570692fd6d12))
+* **documentation:** wrong css name referenced ([77a0b7f](https://github.com/borgfriend/gatsby-remark-embed-video/commit/77a0b7f6e7d962a0002f47e51c7609a293b9db67))
+
 ## [3.0.0](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v1.7.0...v3.0.0) (2020-05-03)
 
 
