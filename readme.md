@@ -4,6 +4,8 @@ Embed a Youtube Video in your Markdown
 
 Inspired by [gatsby-remark-embed-youtube](https://github.com/ntwcklng/gatsby-remark-embed-youtube)
 
+
+
 ## Install
 
 1.  Install plugin to your site:
@@ -78,6 +80,13 @@ Note: you can style the videoIframe using `.embedVideo-container` or by specifyi
 `twitch: 273436948`
 `twitchLive: dakotaz`
 ```
+
+**Version 3**
+Added A11y support
+
+`video: [VideoTitle](https://www.youtube.com/embed/2Xc9gXyf2G4)`
+`youtube: [Cool Youtube Video](https://www.youtube.com/watch?v=2Xc9gXyf2G4)`
+
 
 ## License
 
