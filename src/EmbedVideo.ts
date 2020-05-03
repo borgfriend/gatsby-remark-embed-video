@@ -64,10 +64,10 @@ function createIframe(
   videoService: IVideoService,
   options: IEmbedVideoOptions
 ) {
-  const {title="", width, height} = options;
+  const {title="", width, height, containerClass} = options;
 
   let iframeNode = `
-        <div class="embedVideo-container">
+        <div class=${containerClass}>
             <iframe
               title="${title}"
               width="${width}"

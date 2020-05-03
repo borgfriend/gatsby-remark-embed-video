@@ -36,6 +36,7 @@ yarn add gatsby-remark-embed-video
                   embedURL: (videoId) => `https://www.youtube-nocookie.com/embed/${videoId}`,
                 }
               ] //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
+              containerClass: 'embedVideoIframe', //Optional: Custom CSS class for iframe container
             }
           }
           ]
@@ -53,7 +54,7 @@ plugins: [
 ]
 ```
 
-Note: you can style the videoIframe using `.embedVideoIframe`
+Note: you can style the videoIframe using `.embedVideoIframe` or by specifying a custom class
 
 1.  Restart gatsby.
 
