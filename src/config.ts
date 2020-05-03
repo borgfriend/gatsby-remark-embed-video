@@ -10,7 +10,7 @@ export const defaultOptions: IEmbedVideoOptions = {
   related: false,
   noIframeBorder: true,
   urlOverrides: [],
-  containerClass: "embedVideoIframe",
+  containerClass: "embedVideo-container",
 };
 
 export const videoServicesConfig: IVideoService[] = [
