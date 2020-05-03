@@ -33,7 +33,7 @@
     "watch": "tsc -w",
     "commit": "npx git-cz",
     "release": "standard-version",
-    "test": "jest --watch"
+    "test": "jest --ci"
   },
   "homepage": "https://github.com/borgfriend/gatsby-remark-embed-video#readme",
   "repository": {
