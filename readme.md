@@ -46,12 +46,13 @@ yarn add gatsby-remark-embed-video
       },
 ```
 
-Note: if you also rely on `gatsby-remark-responsive-iframe` or `gatsby-remark-images`, you have to define the embed-youtube plugin first:
+Note: if you also rely on `gatsby-remark-responsive-iframe`, `gatsby-remark-images`, or `gatsby-remark-prismjs`, you have to define the embed-youtube plugin first:
 
 ```js
 plugins: [
   "gatsby-remark-embed-video",
   "gatsby-remark-responsive-iframe",
+  "gatsby-remark-prismjs",
   "gatsby-remark-images"
 ]
 ```
