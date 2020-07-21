@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.youtubeUrl = void 0;
 const url_1 = require("url");
 function youtubeUrl(id, url, options) {
     let newParameters = [];

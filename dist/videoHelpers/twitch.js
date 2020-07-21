@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.twitchIdProcessor = void 0;
 const url_1 = require("url");
 const readTwitchURL = (url) => {
     const pathSplit = url.pathname.split("/");
