@@ -19,11 +19,12 @@ yarn add gatsby-remark-embed-video
 2.  Add following to your `gatsby-config.js`:
 
 ```js
-    plugins: [
-      {
-        resolve: "gatsby-transformer-remark",
-        options: {
-          plugins: [
+module.exports = {
+  plugins: [
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
           {
             resolve: "gatsby-remark-embed-video",
             options: {
@@ -34,16 +35,19 @@ yarn add gatsby-remark-embed-video
               noIframeBorder: true, //Optional: Disable insertion of <style> border: 0
               urlOverrides: [
                 {
-                  id: 'youtube',
-                  embedURL: (videoId) => `https://www.youtube-nocookie.com/embed/${videoId}`,
-                }
-              ] //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
-              containerClass: 'embedVideo-container', //Optional: Custom CSS class for iframe container, for multiple classes separate them by space
-            }
-          }
-          ]
-        }
+                  id: "youtube",
+                  embedURL: videoId =>
+                    `https://www.youtube-nocookie.com/embed/${videoId}`,
+                },
+              ], //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
+              containerClass: "embedVideo-container", //Optional: Custom CSS class for iframe container, for multiple classes separate them by space
+            },
+          },
+        ],
       },
+    },
+  ],
+};
 ```
 
 Note: if you also rely on `gatsby-remark-responsive-iframe`, `gatsby-remark-images`, or `gatsby-remark-prismjs`, you have to define the embed-youtube plugin first:
