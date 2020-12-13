@@ -21,6 +21,7 @@ interface IEmbedVideoOptions extends RemarkBurgerOptions {
   endMarker?: string;
   title?: string;
   containerClass?: string;
+  loadingStrategy?: string;
 }
 
 interface IVideoId {

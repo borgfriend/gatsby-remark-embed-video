@@ -15,6 +15,7 @@ exports.defaultOptions = {
     noIframeBorder: true,
     urlOverrides: [],
     containerClass: "embedVideo-container",
+    loadingStrategy: "eager"
 };
 exports.videoServicesConfig = [
     {
@@ -49,10 +50,11 @@ exports.videoIdProcessors = [
     twitch_1.twitchIdProcessor,
     nicovideo_1.nicoVideoProcessor,
 ];
-exports.knownPlatforms = () => {
+const knownPlatforms = () => {
     return exports.videoServicesConfig.map((val) => val.id);
 };
-exports.getVideoService = (service, options) => {
+exports.knownPlatforms = knownPlatforms;
+const getVideoService = (service, options) => {
     const foundService = exports.videoServicesConfig.find((val) => val.id === service);
     if (foundService) {
         if (options.urlOverrides) {
@@ -67,3 +69,4 @@ exports.getVideoService = (service, options) => {
         throw Error("VideoService could not be found");
     }
 };
+exports.getVideoService = getVideoService;

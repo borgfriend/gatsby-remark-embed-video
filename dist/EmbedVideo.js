@@ -46,7 +46,7 @@ function createUrl(videoId, videoService, options) {
     return url.toString();
 }
 function createIframe(url, videoService, options) {
-    const { title = "", width, height, containerClass } = options;
+    const { title = "", width, height, containerClass, loadingStrategy } = options;
     let iframeNode = `
         <div class="${containerClass}">
             <iframe
@@ -56,6 +56,7 @@ function createIframe(url, videoService, options) {
               src="${url}"
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ""}
+              loading="${loadingStrategy}"
               allowfullscreen
             ></iframe>
         </div>`;

@@ -64,7 +64,7 @@ function createIframe(
   videoService: IVideoService,
   options: IEmbedVideoOptions
 ) {
-  const {title="", width, height, containerClass} = options;
+  const {title="", width, height, containerClass, loadingStrategy} = options;
 
   let iframeNode = `
         <div class="${containerClass}">
@@ -75,6 +75,7 @@ function createIframe(
               src="${url}"
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ""}
+              loading="${loadingStrategy}"
               allowfullscreen
             ></iframe>
         </div>`;
