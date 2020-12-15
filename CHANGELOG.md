@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.11](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.0.10...v3.0.11) (2020-12-15)
+
+
+### Bug Fixes
+
+* **documentation:** Fix syntax, improve README.md ([52d66dc](https://github.com/borgfriend/gatsby-remark-embed-video/commit/52d66dc6d9a11799ee875bfad6fc523c6ae4df70))
+
 ### [3.0.10](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.0.9...v3.0.10) (2020-05-03)
 
 ### [3.0.9](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.0.8...v3.0.9) (2020-05-03)
