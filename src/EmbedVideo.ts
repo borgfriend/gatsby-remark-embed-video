@@ -64,7 +64,7 @@ function createIframe(
   videoService: IVideoService,
   options: IEmbedVideoOptions
 ) {
-  const { title = "", width, height, containerClass, iframeId } = options;
+  const {title ="", width, height, containerClass, iframeId} = options;
 
   let iframeNode = `
         <div class="${containerClass}">
