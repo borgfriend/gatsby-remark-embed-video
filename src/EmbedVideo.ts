@@ -1,7 +1,7 @@
-import {URL} from "url";
+import { URL } from "url";
 
-import {getVideoService, videoIdProcessors} from "./config";
-import {IEmbedVideoOptions, IVideoId, IVideoService} from "./interfaces";
+import { getVideoService, videoIdProcessors } from "./config";
+import { IEmbedVideoOptions, IVideoId, IVideoService } from "./interfaces";
 
 export function embedVideoHTML(
   type: string,
@@ -65,7 +65,7 @@ function createIframe(
   videoService: IVideoService,
   options: IEmbedVideoOptions
 ) {
-  const {title = "", width, height, containerClass} = options;
+  const { title = "", width, height, containerClass } = options;
 
   let iframeNode = `
         <div class="${containerClass}">

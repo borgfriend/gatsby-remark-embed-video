@@ -1,10 +1,10 @@
-import {URL} from "url";
-import {RemarkBurgerOptions} from "remark-burger";
+import { URL } from "url";
+import { RemarkBurgerOptions } from "remark-burger";
 
 interface Node {
   type: string;
   value: string;
-  data: {content: string};
+  data: { content: string };
 }
 
 interface IEmbedVideoOptions extends RemarkBurgerOptions {
