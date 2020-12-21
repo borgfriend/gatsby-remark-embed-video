@@ -1,8 +1,8 @@
-import { youtubeUrl } from "./videoHelpers/youtube";
+import {youtubeUrl} from "./videoHelpers/youtube";
 import getVideoId from "get-video-id";
-import { twitchIdProcessor } from "./videoHelpers/twitch";
-import { IVideoService, IVideoId, IEmbedVideoOptions } from "./interfaces";
-import { nicoVideoProcessor } from "./videoHelpers/nicovideo";
+import {twitchIdProcessor} from "./videoHelpers/twitch";
+import {IVideoService, IVideoId, IEmbedVideoOptions} from "./interfaces";
+import {nicoVideoProcessor} from "./videoHelpers/nicovideo";
 
 export const defaultOptions: IEmbedVideoOptions = {
   width: 560,

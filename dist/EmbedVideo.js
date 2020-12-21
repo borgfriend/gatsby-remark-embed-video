@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.embedVideoHTML = void 0;
 const url_1 = require("url");
 const config_1 = require("./config");
 function embedVideoHTML(type, id, options) {
@@ -8,7 +7,7 @@ function embedVideoHTML(type, id, options) {
         const videoId = readVideoId(type, id);
         const videoService = config_1.getVideoService(videoId.service, options);
         const url = createUrl(videoId.id, videoService, options);
-        let iframe = createIframe(url, videoService, options);
+        let iframe = createIframe(url, id, videoService, options);
         return iframe;
     }
     catch (e) {
@@ -45,7 +44,7 @@ function createUrl(videoId, videoService, options) {
     }
     return url.toString();
 }
-function createIframe(url, videoService, options) {
+function createIframe(url, id, videoService, options) {
     const { title = "", width, height, containerClass } = options;
     let iframeNode = `
         <div class="${containerClass}">
@@ -56,6 +55,7 @@ function createIframe(url, videoService, options) {
               src="${url}"
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ""}
+              ${options.iframeId ? `id="${id}"` : ""}
               allowfullscreen
             ></iframe>
         </div>`;

@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.nicoVideoProcessor = void 0;
 const url_1 = require("url");
 function nicoVideoProcessor(input) {
     try {
