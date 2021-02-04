@@ -13,7 +13,7 @@ export function embedVideoHTML(
 
     const videoService = getVideoService(videoId.service, options);
     const url = createUrl(videoId.id, videoService, options);
-    let iframe = createIframe(url, videoService, options);
+    let iframe = createIframe(url, id, videoService, options);
     return iframe;
   } catch (e) {
     return `<p style="color: red">Error: ${e.message}</p>`;
@@ -61,10 +61,11 @@ function createUrl(
 
 function createIframe(
   url: string,
+  id: string,
   videoService: IVideoService,
   options: IEmbedVideoOptions
 ) {
-  const {title="", width, height, containerClass} = options;
+  const { title = "", width, height, containerClass } = options;
 
   let iframeNode = `
         <div class="${containerClass}">
@@ -75,6 +76,7 @@ function createIframe(
               src="${url}"
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ""}
+              ${options.iframeId ? `id="${id}"` : ""}
               allowfullscreen
             ></iframe>
         </div>`;

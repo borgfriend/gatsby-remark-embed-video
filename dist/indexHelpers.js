@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readTitle = void 0;
-const readTitle = (txt) => {
+
+exports.readTitle = (txt) => {
     const match = txt.match(/\[(.*)\]\((.*)\)/);
     if (match) {
         return {
