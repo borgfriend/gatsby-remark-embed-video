@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readTitle = void 0;
-exports.readTitle = (txt) => {
+const readTitle = (txt) => {
     const match = txt.match(/\[(.*)\]\((.*)\)/);
     if (match) {
         return {
@@ -14,3 +14,4 @@ exports.readTitle = (txt) => {
         title: "",
     };
 };
+exports.readTitle = readTitle;
