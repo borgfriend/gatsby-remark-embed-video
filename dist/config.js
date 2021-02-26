@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getVideoService = exports.knownPlatforms = exports.videoIdProcessors = exports.videoServicesConfig = exports.defaultOptions = void 0;
 const youtube_1 = require("./videoHelpers/youtube");
 const get_video_id_1 = __importDefault(require("get-video-id"));
 const twitch_1 = require("./videoHelpers/twitch");
@@ -14,6 +15,7 @@ exports.defaultOptions = {
     noIframeBorder: true,
     urlOverrides: [],
     containerClass: "embedVideo-container",
+    loadingStrategy: "eager"
 };
 exports.videoServicesConfig = [
     {
