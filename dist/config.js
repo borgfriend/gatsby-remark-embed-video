@@ -14,6 +14,7 @@ exports.defaultOptions = {
     noIframeBorder: true,
     urlOverrides: [],
     containerClass: "embedVideo-container",
+    loadingStrategy: "eager"
 };
 exports.videoServicesConfig = [
     {
