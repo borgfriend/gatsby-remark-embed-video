@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.0.12...v3.1.0) (2021-02-26)
+
+
+### Features
+
+* add option for automatically setting id of iframe element ([368dbcf](https://github.com/borgfriend/gatsby-remark-embed-video/commit/368dbcf354f815057111cf5c09cacd9f68663ee7))
+* add option for setting id of iframe element ([5b00577](https://github.com/borgfriend/gatsby-remark-embed-video/commit/5b005776646406a8d275c1d708707d698da66c42))
+
 ### [3.0.12](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.0.11...v3.0.12) (2021-02-04)
 
 ### [3.0.11](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.0.10...v3.0.11) (2020-12-15)
