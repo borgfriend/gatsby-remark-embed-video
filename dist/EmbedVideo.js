@@ -59,7 +59,7 @@ function createIframe(url, id, videoService, options) {
               ${options.iframeId ? `id="${id}"` : ""}
               loading="${loadingStrategy}"
               allowfullscreen
-	      sandbox
+	      sandbox="allow-same-origin allow-scripts allow-popups"
             ></iframe>
         </div>`;
     if (videoService.additionalHTML) {
