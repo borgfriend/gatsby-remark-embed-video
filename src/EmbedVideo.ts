@@ -79,6 +79,7 @@ function createIframe(
               ${options.iframeId ? `id="${id}"` : ""}
               loading="${loadingStrategy}"
               allowfullscreen
+	      sandbox="allow-same-origin allow-scripts allow-popups"
             ></iframe>
         </div>`;
 
