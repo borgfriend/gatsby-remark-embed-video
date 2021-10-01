@@ -6,7 +6,7 @@ const config_1 = require("./config");
 function embedVideoHTML(type, id, options) {
     try {
         const videoId = readVideoId(type, id);
-        const videoService = config_1.getVideoService(videoId.service, options);
+        const videoService = (0, config_1.getVideoService)(videoId.service, options);
         const url = createUrl(videoId.id, videoService, options);
         let iframe = createIframe(url, id, videoService, options);
         return iframe;

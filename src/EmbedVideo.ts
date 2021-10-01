@@ -16,7 +16,7 @@ export function embedVideoHTML(
     let iframe = createIframe(url, id, videoService, options);
     return iframe;
   } catch (e) {
-    return `<p style="color: red">Error: ${e.message}</p>`;
+    return `<p style="color: red">Error: ${(e as Error).message}</p>`;
   }
 }
 

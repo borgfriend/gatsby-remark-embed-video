@@ -17,15 +17,15 @@ const overrideDefaultOptions = (options) => {
 const addVideoIframe = ({ markdownAST }, options) => {
     options = overrideDefaultOptions(options);
     const match = (node, v) => {
-        const keywords = [...config_1.knownPlatforms(), "video"].join("|");
+        const keywords = [...(0, config_1.knownPlatforms)(), "video"].join("|");
         const re = new RegExp(`\(${keywords}\):\(\.\*\)`, "i");
         const processValue = v.match(re);
         if (processValue) {
             const type = processValue[1];
-            const { id, title } = indexHelpers_1.readTitle(processValue[2].trim());
+            const { id, title } = (0, indexHelpers_1.readTitle)(processValue[2].trim());
             options = Object.assign(Object.assign({}, options), { title });
             node.type = `html`;
-            node.value = EmbedVideo_1.embedVideoHTML(type, id, options);
+            node.value = (0, EmbedVideo_1.embedVideoHTML)(type, id, options);
         }
     };
     const { beginMarker, endMarker } = options;
