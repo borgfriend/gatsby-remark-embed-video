@@ -11,7 +11,8 @@ export const defaultOptions: IEmbedVideoOptions = {
   noIframeBorder: true,
   urlOverrides: [],
   containerClass: "embedVideo-container",
-  loadingStrategy: "eager"
+  loadingStrategy: "eager",
+  sandboxOpts: "allow-same-origin allow-scripts allow-popups allow-presentation"
 };
 
 export const videoServicesConfig: IVideoService[] = [

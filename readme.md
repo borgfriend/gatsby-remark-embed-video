@@ -1,6 +1,6 @@
-# gatsby-remark-embed-video
+# gatsby-remark-embed-video-ext
 
-Embed a Youtube Video in your Markdown
+Embed a Youtube Video in your Markdown with additional options
 
 Inspired by [gatsby-remark-embed-youtube](https://github.com/ntwcklng/gatsby-remark-embed-youtube)
 
@@ -11,9 +11,9 @@ Inspired by [gatsby-remark-embed-youtube](https://github.com/ntwcklng/gatsby-rem
 1.  Install plugin to your site:
 
 ```bash
-npm i gatsby-remark-embed-video
+npm i gatsby-remark-embed-video-ext
 
-yarn add gatsby-remark-embed-video
+yarn add gatsby-remark-embed-video-ext
 ```
 
 2.  Add following to your `gatsby-config.js`:
@@ -26,7 +26,7 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: "gatsby-remark-embed-video",
+            resolve: "gatsby-remark-embed-video-ext",
             options: {
               width: 800,
               ratio: 1.77, // Optional: Defaults to 16/9 = 1.77
@@ -34,6 +34,7 @@ module.exports = {
               related: false, //Optional: Will remove related videos from the end of an embedded YouTube video.
               noIframeBorder: true, //Optional: Disable insertion of <style> border: 0
               loadingStrategy: 'lazy', //Optional: Enable support for lazy-load offscreen iframes. Default is disabled.
+              sandboxOpts: 'allow-same-origin allow-scripts allow-popups allow-presentation', // Optional: sandbox options
               urlOverrides: [
                 {
                   id: "youtube",
@@ -56,7 +57,7 @@ Note: if you also rely on `gatsby-remark-responsive-iframe`, `gatsby-remark-imag
 
 ```js
 plugins: [
-  "gatsby-remark-embed-video",
+  "gatsby-remark-embed-video-ext",
   "gatsby-remark-responsive-iframe",
   "gatsby-remark-prismjs",
   "gatsby-remark-images"

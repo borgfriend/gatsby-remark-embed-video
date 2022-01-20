@@ -1,10 +1,10 @@
 {
-  "name": "gatsby-remark-embed-video",
+  "name": "gatsby-remark-embed-video-ext",
   "version": "3.1.1",
-  "description": "Embed Videos (Youtube, Vimeo, VideoPress) in Gatsby via Markdown",
+  "description": "Embed Videos (Youtube, Vimeo, VideoPress) in Gatsby via Markdown with additional options",
   "main": "index.js",
   "types": "dist/index.d.ts",
-  "author": "Neal Bürger <info@nealbuerger.com>",
+  "author": "Alexander Khudoev <alexanderkhudoev@gmail.com>",
   "license": "MIT",
   "keywords": [
     "gatsby",
@@ -35,10 +35,10 @@
     "release": "standard-version",
     "test": "jest --ci"
   },
-  "homepage": "https://github.com/borgfriend/gatsby-remark-embed-video#readme",
+  "homepage": "https://github.com/AlexanderKhudoev/gatsby-remark-embed-video#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/borgfriend/gatsby-remark-embed-video.git"
+    "url": "git+https://github.com/AlexanderKhudoev/gatsby-remark-embed-video.git"
   },
   "config": {
     "commitizen": {

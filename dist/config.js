@@ -15,7 +15,8 @@ exports.defaultOptions = {
     noIframeBorder: true,
     urlOverrides: [],
     containerClass: "embedVideo-container",
-    loadingStrategy: "eager"
+    loadingStrategy: "eager",
+    sandboxOpts: "allow-same-origin allow-scripts allow-popups allow-presentation"
 };
 exports.videoServicesConfig = [
     {

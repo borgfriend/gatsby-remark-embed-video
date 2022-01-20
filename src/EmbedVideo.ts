@@ -65,7 +65,7 @@ function createIframe(
   videoService: IVideoService,
   options: IEmbedVideoOptions
 ) {
-  const {title="", width, height, containerClass, loadingStrategy} = options;
+  const {title="", width, height, containerClass, loadingStrategy, sandboxOpts} = options;
 
   let iframeNode = `
         <div class="${containerClass}">
@@ -79,7 +79,7 @@ function createIframe(
               ${options.iframeId ? `id="${id}"` : ""}
               loading="${loadingStrategy}"
               allowfullscreen
-	      sandbox="allow-same-origin allow-scripts allow-popups"
+	      sandbox="${sandboxOpts}"
             ></iframe>
         </div>`;
 

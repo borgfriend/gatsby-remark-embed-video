@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2](https://github.com/AlexanderKhudoev/gatsby-remark-embed-video/compare/v3.1.1...v3.2) (2022-01-20)
+
+### Features
+
+* add option for sandbox options 
+
 ### [3.1.1](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.1.0...v3.1.1) (2021-03-13)
 
 ## [3.1.0](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.0.12...v3.1.0) (2021-02-26)

@@ -46,7 +46,7 @@ function createUrl(videoId, videoService, options) {
     return url.toString();
 }
 function createIframe(url, id, videoService, options) {
-    const { title = "", width, height, containerClass, loadingStrategy } = options;
+    const { title = "", width, height, containerClass, loadingStrategy, sandboxOpts } = options;
     let iframeNode = `
         <div class="${containerClass}">
             <iframe
@@ -59,7 +59,7 @@ function createIframe(url, id, videoService, options) {
               ${options.iframeId ? `id="${id}"` : ""}
               loading="${loadingStrategy}"
               allowfullscreen
-	      sandbox="allow-same-origin allow-scripts allow-popups"
+	      sandbox="${sandboxOpts}"
             ></iframe>
         </div>`;
     if (videoService.additionalHTML) {
