@@ -3,7 +3,8 @@ import { defaultOptions, knownPlatforms } from "./config";
 import { embedVideoHTML } from "./EmbedVideo";
 import plugin from "remark-burger";
 import { readTitle } from "./indexHelpers";
-import { visit } from 'unist-util-visit';
+
+const visit = require(`unist-util-visit`);
 
 const overrideDefaultOptions = (
   options: IEmbedVideoOptions
