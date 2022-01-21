@@ -1,9 +1,10 @@
 {
   "name": "gatsby-remark-embed-video-ext",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "Embed Videos (Youtube, Vimeo, VideoPress) in Gatsby via Markdown with additional options",
   "main": "index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "author": "Alexander Khudoev <alexanderkhudoev@gmail.com>",
   "license": "MIT",
   "keywords": [
