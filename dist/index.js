@@ -6,7 +6,7 @@ const config_1 = require("./config");
 const EmbedVideo_1 = require("./EmbedVideo");
 const remark_burger_1 = __importDefault(require("remark-burger"));
 const indexHelpers_1 = require("./indexHelpers");
-const visit = require(`unist-util-visit`);
+const unist_util_visit_1 = require("unist-util-visit");
 const overrideDefaultOptions = (options) => {
     const videoOptions = Object.assign(Object.assign({}, config_1.defaultOptions), options);
     if (!videoOptions.height) {
@@ -30,13 +30,13 @@ const addVideoIframe = ({ markdownAST }, options) => {
     };
     const { beginMarker, endMarker } = options;
     if (beginMarker || endMarker) {
-        visit(markdownAST, `embedVideo`, (node) => {
+        (0, unist_util_visit_1.visit)(markdownAST, `embedVideo`, (node) => {
             const { data } = node;
             match(node, data.content);
         });
     }
     else {
-        visit(markdownAST, `inlineCode`, (node) => {
+        (0, unist_util_visit_1.visit)(markdownAST, `inlineCode`, (node) => {
             const { value } = node;
             match(node, value);
         });
