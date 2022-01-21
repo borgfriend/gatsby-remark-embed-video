@@ -89,8 +89,11 @@ Note: you can style the videoIframe using `.embedVideo-container` or by specifyi
 `twitchLive: dakotaz`
 ```
 
+**Version 3.2.7**
+* Fixed - ERR_REQUIRE_ESM failure when using unist-util-visit>=3.0.0
+
 **Version 3**
-Added A11y support
+* Added A11y support
 
 `video: [VideoTitle](https://www.youtube.com/embed/2Xc9gXyf2G4)`
 `youtube: [Cool Youtube Video](https://www.youtube.com/watch?v=2Xc9gXyf2G4)`
