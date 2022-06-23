@@ -10,7 +10,6 @@ export function embedVideoHTML(
 ): string {
   try {
     const videoId: IVideoId = readVideoId(type, id);
-
     const videoService = getVideoService(videoId.service, options);
     const url = createUrl(videoId.id, videoService, options);
     let iframe = createIframe(url, id, videoService, options);
@@ -20,8 +19,8 @@ export function embedVideoHTML(
   }
 }
 
-function readVideoId(type: string, id: string): IVideoId {
-  let videoId;
+export function readVideoId(type: string, id: string): IVideoId {
+  let videoId: IVideoId | {};
   for (let processor of videoIdProcessors) {
     try {
       videoId = processor(id);
@@ -29,7 +28,8 @@ function readVideoId(type: string, id: string): IVideoId {
       videoId = {};
     }
 
-    if (Object.keys(videoId).length !== 0) {
+    
+    if (Object.keys(videoId).length !== 0 && (videoId as IVideoId).id !== null) {
       return videoId as IVideoId;
     }
   }
@@ -65,7 +65,13 @@ function createIframe(
   videoService: IVideoService,
   options: IEmbedVideoOptions
 ) {
-  const {title="", width, height, containerClass, loadingStrategy} = options;
+  const {
+    title = "",
+    width,
+    height,
+    containerClass,
+    loadingStrategy,
+  } = options;
 
   let iframeNode = `
         <div class="${containerClass}">

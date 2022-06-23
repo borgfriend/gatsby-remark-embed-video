@@ -66,7 +66,7 @@ const getVideoService = (service, options) => {
         return foundService;
     }
     else {
-        throw Error("VideoService could not be found");
+        throw Error("VideoService could not be found" + service);
     }
 };
 exports.getVideoService = getVideoService;

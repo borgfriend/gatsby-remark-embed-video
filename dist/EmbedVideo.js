@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.embedVideoHTML = void 0;
+exports.readVideoId = exports.embedVideoHTML = void 0;
 const url_1 = require("url");
 const config_1 = require("./config");
 function embedVideoHTML(type, id, options) {
@@ -25,7 +25,7 @@ function readVideoId(type, id) {
         catch (e) {
             videoId = {};
         }
-        if (Object.keys(videoId).length !== 0) {
+        if (Object.keys(videoId).length !== 0 && videoId.id !== null) {
             return videoId;
         }
     }
@@ -37,6 +37,7 @@ function readVideoId(type, id) {
         service: type.toLowerCase(),
     };
 }
+exports.readVideoId = readVideoId;
 function createUrl(videoId, videoService, options) {
     const videoUrl = videoService.embedUrl(videoId);
     let url = new url_1.URL(videoUrl);
@@ -46,7 +47,7 @@ function createUrl(videoId, videoService, options) {
     return url.toString();
 }
 function createIframe(url, id, videoService, options) {
-    const { title = "", width, height, containerClass, loadingStrategy } = options;
+    const { title = "", width, height, containerClass, loadingStrategy, } = options;
     let iframeNode = `
         <div class="${containerClass}">
             <iframe

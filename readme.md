@@ -2,6 +2,40 @@
 
 Embed a Youtube Video in your Markdown
 
+## Usage
+
+```markdown
+# Look at this Video:
+
+`video: https://www.youtube.com/embed/2Xc9gXyf2G4`
+`youtube: https://www.youtube.com/watch?v=2Xc9gXyf2G4`
+`youtube: 2Xc9gXyf2G4`
+
+`vimeo: https://vimeo.com/5299404`
+`vimeo: 5299404`
+
+`videoPress: https://videopress.com/v/kUJmAcSf`
+`videoPress: kUJmAcSf`
+
+`twitch: https://player.twitch.tv/?channel=dakotaz`
+`twitch: https://player.twitch.tv/?autoplay=false&video=v273436948`
+`twitch: 273436948`
+`twitchLive: dakotaz`
+```
+
+## Additional Features
+
+### Add Custom CSS Styling
+You can style the videoIframe using `.embedVideo-container` or by specifying a custom class
+
+1.  Restart gatsby.
+
+### A11y support
+
+`video: [VideoTitle](https://www.youtube.com/embed/2Xc9gXyf2G4)`
+`youtube: [Cool Youtube Video](https://www.youtube.com/watch?v=2Xc9gXyf2G4)`
+
+
 ## Install
 
 ```bash
@@ -11,6 +45,8 @@ yarn add gatsby-remark-embed-video
 ```
 
 ## Configuration Markdown with MDX
+
+
 
 ```ts
 import type { GatsbyConfig } from "gatsby";
@@ -113,7 +149,9 @@ module.exports = {
 };
 ```
 
-Note: if you also rely on `gatsby-remark-responsive-iframe`, `gatsby-remark-images`, or `gatsby-remark-prismjs`, you have to define the embed-youtube plugin first:
+## Troubleshooting
+
+if you also rely on `gatsby-remark-responsive-iframe`, `gatsby-remark-images`, or `gatsby-remark-prismjs`, you have to define the embed-youtube plugin first:
 
 ```js
 plugins: [
@@ -124,36 +162,6 @@ plugins: [
 ]
 ```
 
-Note: you can style the videoIframe using `.embedVideo-container` or by specifying a custom class
-
-1.  Restart gatsby.
-
-## Usage
-
-```markdown
-# Look at this Video:
-
-`video: https://www.youtube.com/embed/2Xc9gXyf2G4`
-`youtube: https://www.youtube.com/watch?v=2Xc9gXyf2G4`
-`youtube: 2Xc9gXyf2G4`
-
-`vimeo: https://vimeo.com/5299404`
-`vimeo: 5299404`
-
-`videoPress: https://videopress.com/v/kUJmAcSf`
-`videoPress: kUJmAcSf`
-
-`twitch: https://player.twitch.tv/?channel=dakotaz`
-`twitch: https://player.twitch.tv/?autoplay=false&video=v273436948`
-`twitch: 273436948`
-`twitchLive: dakotaz`
-```
-
-**Version 3**
-Added A11y support
-
-`video: [VideoTitle](https://www.youtube.com/embed/2Xc9gXyf2G4)`
-`youtube: [Cool Youtube Video](https://www.youtube.com/watch?v=2Xc9gXyf2G4)`
 
 
 

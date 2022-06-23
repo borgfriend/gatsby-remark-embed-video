@@ -73,6 +73,6 @@ export const getVideoService = (
     }
     return foundService;
   } else {
-    throw Error("VideoService could not be found");
+    throw Error("VideoService could not be found" + service);
   }
 };
