@@ -1,9 +1,10 @@
-import plugin from "remark-burger";
-import { visit } from "unist-util-visit";
+import { IEmbedVideoOptions, Node } from "./interfaces";
 import { defaultOptions, knownPlatforms } from "./config";
 import { embedVideoHTML } from "./EmbedVideo";
+import plugin from "remark-burger";
 import { readTitle } from "./indexHelpers";
-import { IEmbedVideoOptions, Node } from "./interfaces";
+
+const visit = require(`unist-util-visit`);
 
 const overrideDefaultOptions = (
   options: IEmbedVideoOptions
@@ -28,8 +29,8 @@ const addVideoIframe = ({ markdownAST }: any, options: IEmbedVideoOptions) => {
     if (processValue) {
       const type = processValue[1];
       const { id, title } = readTitle(processValue[2].trim());
-      options = { ...options, title };
-
+      options = {...options, title}
+      
       node.type = `html`;
       node.value = embedVideoHTML(type, id, options);
     }
