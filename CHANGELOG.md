@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.1.4...v3.2.0) (2022-06-30)
+
+
+### Features
+
+* **iframe:** expose iframe sandbox attribute ([40efa8e](https://github.com/borgfriend/gatsby-remark-embed-video/commit/40efa8ed4abcd972c89184510036af51625c0469)), closes [#121](https://github.com/borgfriend/gatsby-remark-embed-video/issues/121)
+
 ### [3.1.4](https://github.com/borgfriend/gatsby-remark-embed-video/compare/v3.1.2...v3.1.4) (2022-06-23)
 
 
