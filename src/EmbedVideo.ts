@@ -28,8 +28,10 @@ export function readVideoId(type: string, id: string): IVideoId {
       videoId = {};
     }
 
-    
-    if (Object.keys(videoId).length !== 0 && (videoId as IVideoId).id !== null) {
+    if (
+      Object.keys(videoId).length !== 0 &&
+      (videoId as IVideoId).id !== null
+    ) {
       return videoId as IVideoId;
     }
   }
@@ -83,6 +85,11 @@ function createIframe(
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ""}
               ${options.iframeId ? `id="${id}"` : ""}
+              ${
+                options.sandbox
+                  ? `sandbox=${options.sandbox}`
+                  : ""
+              }
               loading="${loadingStrategy}"
               allowfullscreen
 	      sandbox="allow-same-origin allow-scripts allow-popups"

@@ -23,6 +23,7 @@ interface IEmbedVideoOptions extends RemarkBurgerOptions {
   containerClass?: string;
   iframeId?: boolean;
   loadingStrategy?: string;
+  sandbox?: string;
 }
 
 interface IVideoId {
