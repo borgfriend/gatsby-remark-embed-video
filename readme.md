@@ -46,7 +46,7 @@ yarn add gatsby-remark-embed-video
 
 ## Configuration Markdown with MDX
 
-
+Example Configuration
 
 ```ts
 import type { GatsbyConfig } from "gatsby";
@@ -87,6 +87,7 @@ const config: GatsbyConfig = {
               iframeId: false, //Optional: if true, iframe's id will be set to what is provided after 'video:' (YouTube IFrame player API requires iframe id)
             },
           },
+           "gatsby-remark-responsive-iframe", //Optional: Must be loaded after gatsby-remark-embed-video
         ],
       },
     },
@@ -141,6 +142,7 @@ module.exports = {
               containerClass: "embedVideo-container", //Optional: Custom CSS class for iframe container, for multiple classes separate them by space
               iframeId: false, //Optional: if true, iframe's id will be set to what is provided after 'video:' (YouTube IFrame player API requires iframe id)
             },
+             "gatsby-remark-responsive-iframe", //Optional: Must be loaded after gatsby-remark-embed-video
           },
         ],
       },
@@ -148,6 +150,15 @@ module.exports = {
   ],
 };
 ```
+
+## Make the iFrame Responsive
+
+I would recommend the plugin [gatsby-remark-responsive-iframe](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-responsive-iframe)
+
+Install it with `npm i gatsby-remark-responsive-iframe`
+
+When using this plugin you must ensure that in the sequence of plugins `gatsby-remark-embed-video` runs before `gatsby-remark-responsive-iframe`.
+
 
 ## Troubleshooting
 
