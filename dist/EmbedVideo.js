@@ -25,7 +25,8 @@ function readVideoId(type, id) {
         catch (e) {
             videoId = {};
         }
-        if (Object.keys(videoId).length !== 0 && videoId.id !== null) {
+        if (Object.keys(videoId).length !== 0 &&
+            videoId.id !== null) {
             return videoId;
         }
     }
@@ -58,6 +59,9 @@ function createIframe(url, id, videoService, options) {
               class="embedVideo-iframe"
               ${options.noIframeBorder ? 'style="border:0"' : ""}
               ${options.iframeId ? `id="${id}"` : ""}
+              ${options.sandbox
+        ? `sandbox=${options.sandbox}`
+        : ""}
               loading="${loadingStrategy}"
               allowfullscreen
 	      sandbox="allow-same-origin allow-scripts allow-popups"
